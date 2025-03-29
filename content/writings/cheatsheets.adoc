@@ -1,0 +1,48 @@
+= Cheatsheets
+:keywords: stow
+:revdate: May 2023
+
+This is a living document for all the stuff I forget.
+
+== Stow
+
+.Stow to a specific directory
+[,bash]
+----
+# Run from directory containing your stow package
+# Note: ~ does not work, use explicit path
+stow -t /path/to/target nvim
+----
+
+.Delete a stow package
+[,bash]
+----
+stow -t /path/to/package/to/delete -D nvim
+----
+
+== JDBC
+
+.Batch inserts
+
+[,java]
+----
+void batchInsert(Collection<Person> people) throws SQLException {
+    // Ideally obtain connections from connection pools
+    try (var connection = DriverManager.getConnection("localhost")) {
+        connection.setAutoCommit(false);
+        String insertionSql = "INSERT INTO Customers (Name, City, Country) VALUES (?, ?, ?);";
+        try (var pStatement = connection.prepareStatement(insertionSql)) {
+            for (var person : people) {
+                pStatement.setString(1, person.name());
+                pStatement.setString(2, person.city());
+                pStatement.setString(3, person.country());
+                pStatement.addBatch();
+            }
+            pStatement.executeBatch();
+        }
+        connection.setAutoCommit(true);
+    }
+}
+
+----
+

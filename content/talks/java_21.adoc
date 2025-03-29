@@ -1,0 +1,532 @@
+= Java 21
+:figure-caption!:
+
+== Java Releases
+
+* Java 17: September 2021 (**LTS**)
+* Java 18: March 2022
+* Java 19: September 2022
+* Java 20: March 2023
+* Java 21: September 2023 (**LTS**)
+* Java 22: March 2024
+* Java 23: September 2024
+* Java 24: March 2025
+* Java 25: September 2025 (**LTS**)
+
+No... Java 21 does not mean released in 2021
+
+== What's new?
+
+* Sequenced Collections
+* Code snippets in Javadocs
+* Generational ZGC
+* Pattern Matching
+* Virtual Threads
+
+== Emojis
+
+=== is emoji method
+
+[,java]
+----
+String emoji = "Hello! 😄";
+String noEmoji = "Hello!";
+
+emoji.codePoints().anyMatch(Character::isEmoji); // true
+noEmoji.codePoints().anyMatch(Character::isEmoji); // false
+----
+
+== Sequenced Collections
+
+=== New Interface
+
+[,java]
+----
+interface SequencedCollection<E> extends Collection<E> {
+    SequencedCollection<E> reversed();
+
+    // methods promoted from Deque
+    void addFirst(E);
+    void addLast(E);
+    E getFirst();
+    E getLast();
+    E removeFirst();
+    E removeLast();
+}
+----
+
+* Implemented by collections like:
+    ** `List`
+    ** `Deque`
+    ** `NavigableSet`
+    ** `LinkedHashSet`
+
+=== First and Last
+
+|===
+| | Before | After
+
+| Get last
+| `c.get(c.size()-1)`
+| `c.getLast()`
+
+| Remove last
+| `c.remove(c.size()-1)`
+| `c.removeLast()`
+
+| Add last
+| `c.add(c.size()-1)`
+| `c.addLast()`
+|===
+
+`(get|add|remove)First()` works the same way
+
+=== Reverse traversal
+
+.Before
+[,java]
+----
+for (int i = list.size() - 1; i >= 0; i--) {
+    var item = list.get(i);
+    // do something
+}
+----
+
+.After
+[,java]
+----
+for (var item : list.reversed()) {
+    // do something
+}
+
+list.reversed().stream()
+    .map(Object::toString)
+    .toList();
+----
+
+=== Interview Question
+
+.Reverse a linked list
+[,java]
+----
+var list = new LinkedList<Integer>();
+list.reversed();
+----
+
+== Code Snippets in Javadocs
+
+=== Code Snippets Today
+
+[,java]
+----
+/**
+ * Stream example
+ * <pre>{@code
+ * widgets.stream()
+ *         .filter(w -> w.color() == Color.RED)
+ *         .mapToInt(Widget::weight)
+ *         .sum();
+ * }</pre>
+ */
+----
+
+* `<pre>` is required to preserve whitespace
+* `{@code}` properly displays characters like `@`, `<`, and `>` in the code example
+
+=== Code Snippets with Java 21
+
+[,java]
+----
+/**
+ * Stream example
+ * {@snippet :
+ * widgets.stream()
+ *         .filter(w -> w.color() == Color.RED)
+ *         .mapToInt(Widget::weight)
+ *         .sum();
+ * }
+ */
+----
+
+=== External Snippets
+
+[,java]
+----
+/**
+ * Stream example
+ * {@snippet class="StreamExample" region="example"}
+ */
+----
+
+[,java]
+----
+public class StreamExample {
+    void example(List<Widget> widgets) {
+        // @start region="example"
+        widgets.stream()
+                .filter(w -> w.color() == Color.RED)
+                .mapToInt(Widget::weight)
+                .sum();
+        // @end
+    }
+}
+----
+
+=== Other snippet improvements
+
+* Support for snippet validation from external tools
+* Highlighting in snippets
+
+[source,subs="verbatim,quotes"]
+----
+class HelloWorld {
+    public static void main(String... args) {
+        System.out.*println*("Hello World!");
+    }
+}
+----
+
+See https://openjdk.org/jeps/413[JEP 413: Code Snippets in Java Documentation]
+
+== Generational Z Garbage Collector (ZGC)
+
+=== Garbage Collectors
+
+* Trade-offs of garbage collectors
+    ** Throughput
+    ** Latency (pause times)
+    ** Footprint
+* Common Garbage collectors
+    ** Parallel: high throughput
+    ** G1: balance of throughput and latency (default)
+    ** ZGC: low latency
+
+=== Generational Hypothesis
+
+* Most objects die shortly after creation
+* Garbage collectors take advantage of this by splitting objects into young and old generations
+* Perform more frequent collections on the younger generations
+
+=== Netflix Improvements
+
+.Cancellation/error rates per second. Previous week in white vs current cancellation rate in purple, as ZGC was enabled on a service cluster on November 16
+image::https://miro.medium.com/v2/resize:fit:4800/format:webp/0*SCVt4VGlA517hZDi[]
+
+== Pattern Matching
+
+=== Basic Pattern Matching
+
+.Before
+[,java]
+----
+static String formatter(Object obj) {
+    if (obj instanceof Integer i) {
+        return String.format("int %d", i);
+    } else if (obj instanceof Long l) {
+        return String.format("long %d", l);
+    } else if (obj instanceof Double d) {
+        return String.format("double %f", d);
+    } else if (obj instanceof String s) {
+        return String.format("String %s", s);
+    }
+    return obj.toString();
+}
+----
+
+.After
+[,java]
+----
+static String formatter(Object obj) {
+    return switch (obj) {
+        case Integer i -> String.format("int %d", i);
+        case Long l    -> String.format("long %d", l);
+        case Double d  -> String.format("double %f", d);
+        case String s  -> String.format("String %s", s);
+        default        -> obj.toString();
+    };
+}
+----
+
+=== Null Checks
+
+.Before
+[,java]
+----
+static void testFooBarOld(String s) {
+    if (s == null) {
+        System.out.println("Oops!");
+        return;
+    }
+    switch (s) {
+        case "Foo", "Bar" -> System.out.println("Great");
+        default           -> System.out.println("Ok");
+    }
+}
+----
+
+.After
+[,java]
+----
+static void testFooBarNew(String s) {
+    switch (s) {
+        case null         -> System.out.println("Oops");
+        case "Foo", "Bar" -> System.out.println("Great");
+        default           -> System.out.println("Ok");
+    }
+}
+----
+
+=== Trick for exhaustive switch statements
+
+[,java]
+----
+enum Color { RED, GREEN, BLUE }
+static void testExhaustiveSwitchStatement(Color c) {
+    // compiler performs exhaustive checking
+    // since we have a null case
+    switch (c) {
+        case null -> System.out.println("null");
+        case RED -> System.out.println("I am red");
+        case GREEN -> System.out.println("I am green");
+        // missing BLUE case, compiler will error
+    }
+}
+----
+
+=== Case Guards
+
+.Before
+[,java]
+----
+static void testOld(Object obj) {
+    switch (obj) {
+        case String s:
+            if (s.length() == 1) { ... }
+            else { ... }
+            break;
+        ...
+    }
+}
+----
+
+.After
+[,java]
+----
+static void testNew(Object obj) {
+    switch (obj) {
+        case String s when s.length() == 1 -> ...
+        case String s                      -> ...
+        ...
+    }
+}
+----
+
+=== Record Pattern
+
+.Before
+[,java]
+----
+record Point(int x, int y) {}
+
+static void printSum(Object obj) {
+    if (obj instanceof Point p) {
+        int x = p.x();
+        int y = p.y();
+        System.out.println(x+y);
+    }
+}
+----
+
+.After
+[,java]
+----
+record Point(int x, int y) {}
+
+static void printSum(Object obj) {
+    if (obj instanceof Point(int x, int y)) {
+        System.out.println(x+y);
+    }
+}
+----
+
+=== Exhaustive switches
+
+[,java]
+----
+sealed interface S permits A, B, C {}
+final class A implements S {}
+final class B implements S {}
+record C(int i) implements S {}
+
+static int testSealedExhaustive(S s) {
+    return switch (s) {
+        case A a -> 1;
+        case B b -> 2;
+        case C c -> 3;
+    };
+}
+----
+
+=== Result Type
+
+[,java]
+----
+sealed interface AsyncReturn<V> {
+    record Success<V>(V result) implements AsyncReturn<V> { }
+    record Failure<V>(Throwable cause) implements AsyncReturn<V> { }
+    record Timeout<V>() implements AsyncReturn<V> { }
+    record Interrupted<V>() implements AsyncReturn<V> { }
+}
+
+AsyncResult<V> r = future.get();
+switch (r) {
+    case Success(var result) -> ...
+    case Failure(Throwable cause) -> ...
+    case Timeout() -> ...
+    case Interrupted() -> ...
+}
+----
+
+=== Expression Type
+
+[,java]
+----
+sealed interface Expr {
+    record Const(int value) implements Expr { }
+    record Div(Expr left, Expr right) implements Expr { }
+    record Abs(Expr expression) implements Expr { }
+    record Var(String name) implements Expr { }
+}
+----
+
+=== Evaluate the expression
+
+[,java]
+----
+int evaluate(Expr expr, Map<String, Integer> varBindings) {
+    return switch (expr) {
+        case null -> throw new IllegalArgumentException("...");
+        case Const(var v) -> v;
+        case Var(var name) -> varBindings.get(name);
+        case Abs(var inner)
+                -> Math.abs(evaluate(inner, varBindings));
+        case Div(var l, var r) when evaluate(r, varBindings) == 0
+                -> throw new IllegalArgumentException("Div by 0");
+        case Div(var l, var r)
+                -> evaluate(l, varBindings) / evaluate(r, varBindings);
+    };
+}
+----
+
+=== Format the expression
+
+[,java]
+----
+String format(Expr expr) {
+    return switch (expr) {
+        case null -> "null";
+        case Const(var v) -> String.valueOf(v);
+        case Var(var name) -> name;
+        case Abs(var inner) -> "|%s|".formatted(format(inner));
+        case Div(var l, var r) -> "%s / %s".formatted(format(l), format(r));
+    };
+}
+----
+
+=== Simplify the expression
+
+[,java]
+----
+Expr simplify(Expr expr) {
+    return switch (expr) {
+        // v * 1
+        case Mult(var variable, Const(var v)) when v == 1 -> variable;
+        // 1 * v
+        case Mult(Const(var v), var variable) when v == 1 -> variable;
+        // ...
+    };
+}
+----
+
+== Virtual Threads
+
+=== Platform threads
+
+[,java]
+----
+int threadCount = 1_000_000;
+try (var executor = Executors.newFixedThreadPool(threadCount)) {
+    IntStream.range(0, threadCount).forEach(i -> {
+        executor.submit(() -> {
+            Thread.sleep(Duration.ofSeconds(1));
+            return i;
+        });
+    });
+} // executor.close() waits for all submitted tasks to complete
+----
+
+* Threads today are wrappers around costly OS threads 
+* Creating them requires nontrivial amount of time and memory
+
+=== Power of Virtual Threads
+
+[,java]
+----
+int threadCount = 1_000_000;
+try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+    IntStream.range(0, threadCount).forEach(i -> {
+        executor.submit(() -> {
+            Thread.sleep(Duration.ofSeconds(1));
+            return i;
+        });
+    });
+} // executor.close() waits for all submitted tasks to complete
+----
+
+* Lightweight threads (like goroutines)
+* Cheap to create - *do not pool them*
+* Enable thread-per-request style computing
+* Near-optimal hardware utilization
+
+=== How do virtual threads work?
+
+* Virtual thread gets assigned to a platform thread
+* When virtual thread calls a blocking I/O operation, the runtime
+    ** performs a non-blocking OS call
+    ** suspends the virtual thread
+* The platform thread can now be used for other virtual threads
+* When the operation finishes, the virtual thread is rescheduled
+
+=== Virtual Thread API
+
+[,java]
+----
+Thread virtualThread1 = Thread.startVirtualThread(() -> {
+    System.out.println("Executing virtual thread");
+});
+
+Thread virtualThread2 = Thread.ofVirtual()
+    .name("virtual-thread-2")
+    .start(() -> {
+        System.out.println("Executing virtual thread");
+    });
+
+virtualThread1.join();
+virtualThread2.join();
+----
+
+=== When to use virtual threads
+
+* When workload is not cpu bound - virtual threads are not faster threads
+* When there's a high number of concurrent tasks
+
+=== Virtual Thread Pinning
+
+* A virtual thread cannot be unmounted during blocking operations because it is pinned to its carrier when:
+    ** executing a synchronized block or method
+    ** executing a native method or foreign function
+
+* Synchronized block pinning is targeted to be fixed in JDK 24
+* Pinning affects scalability not correctness
+
+== Questions
