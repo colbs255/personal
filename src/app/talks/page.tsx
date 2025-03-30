@@ -4,7 +4,9 @@ import Link from "next/link";
 
 export default function Page() {
     const filePath = path.join(process.cwd(), "public", "talks", "index.json");
-    const index: Record<string, string> = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    const index: Record<string, string> = JSON.parse(
+        fs.readFileSync(filePath, "utf8"),
+    );
     return (
         <div>
             <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
