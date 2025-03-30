@@ -17,7 +17,7 @@ export default function Page() {
           >
             <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
               <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                {v.title}
+                {v.title} {v.tags.join(",")}
               </p>
             </div>
           </Link>

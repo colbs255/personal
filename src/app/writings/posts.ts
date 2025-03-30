@@ -8,6 +8,7 @@ export type Doc = {
   title: string,
   slug: string,
   content: string,
+  tags: string[],
 };
 
 export function getWritings(): Doc[] {
@@ -18,6 +19,7 @@ export function getWritings(): Doc[] {
       title: doc.getTitle() ?? "unknown",
       slug: slugify(doc.getTitle() ?? "unknown"),
       content: doc.convert(),
+      tags: doc.getAttribute("tags", "").split(", "),
     };
   });
   return docs;
