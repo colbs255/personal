@@ -9,7 +9,6 @@
 
 ## Posts
 
-- search
 - static generation of posts
 - format post list
 - post styling
