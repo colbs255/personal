@@ -13,3 +13,5 @@ dev:
 build:
     npm install
     npx tsx src/script/presentations.ts
+format:
+    npx prettier . --write
