@@ -1,5 +1,5 @@
 import Post from "@/app/components/post";
-import { Doc, getWritings } from "../posts";
+import { getWritings } from "../posts";
 
 export default async function Page({
   params,

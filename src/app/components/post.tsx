@@ -1,4 +1,4 @@
-import { Doc } from "../writings/posts";
+import { Doc } from "@/lib/doc";
 import styles from "./post.module.css"
 
 export default function Page(doc: Doc) {
