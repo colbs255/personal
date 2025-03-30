@@ -3,7 +3,6 @@
 ## Project
 
 - deploy
-- linting
 - ci/cd
 - get a nice domain
 
@@ -16,7 +15,6 @@
 
 ## Slides
 
-- open in new tab
 - format slides list
 - static gen: only plugins and dist folders are needed
 
