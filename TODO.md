@@ -24,4 +24,3 @@
 
 - picture
 - writeup
-
