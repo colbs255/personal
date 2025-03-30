@@ -3,31 +3,26 @@
         {
             "title": "Getting Started with Next.js",
             "slug": "getting-started-nextjs",
-            "content": "Next.js is a powerful React framework for building modern web applications...",
             "tags": ["nextjs", "react", "web development"]
         },
         {
             "title": "Understanding TypeScript Basics",
             "slug": "typescript-basics",
-            "content": "TypeScript extends JavaScript by adding types, helping developers catch errors early...",
             "tags": ["typescript", "javascript", "programming"]
         },
         {
             "title": "Introduction to AsciiDoc",
             "slug": "intro-to-asciidoc",
-            "content": "AsciiDoc is a lightweight markup language designed for writing technical documentation...",
             "tags": ["asciidoc", "markup", "documentation"]
         },
         {
             "title": "Building a Search Component in React",
             "slug": "react-search-component",
-            "content": "Learn how to build a reusable search component in React using controlled inputs...",
             "tags": ["react", "ui", "components"]
         },
         {
             "title": "Deploying a Next.js App on Vercel",
             "slug": "deploy-nextjs-vercel",
-            "content": "Vercel provides seamless deployment for Next.js applications with zero configuration...",
             "tags": ["nextjs", "deployment", "vercel"]
         }
     ]
