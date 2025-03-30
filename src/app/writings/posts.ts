@@ -1,15 +1,9 @@
 import path from "path";
 import fs from "fs";
 import Asciidoctor from "asciidoctor";
+import { Doc } from "@/lib/doc";
 
 const asciidoctor = Asciidoctor();
-
-export type Doc = {
-  title: string,
-  slug: string,
-  content: string,
-  tags: string[],
-};
 
 export function getWritings(): Doc[] {
   const filePath = path.join(process.cwd(), "content", "writings");
