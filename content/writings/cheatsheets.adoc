@@ -1,5 +1,5 @@
 = Cheatsheets
-:keywords: stow
+:tags: software
 :revdate: May 2023
 
 This is a living document for all the stuff I forget.
