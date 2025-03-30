@@ -1,7 +1,11 @@
-export type Doc = {
+export type Metadata = {
   title: string,
   slug: string,
-  content: string,
   tags: string[],
+}
+
+export type Doc = {
+  meta: Metadata,
+  content: string,
 };
 

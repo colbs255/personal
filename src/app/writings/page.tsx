@@ -1,12 +1,12 @@
 "use client"
 import Link from 'next/link'
-import { Doc } from '@/lib/doc';
+import { Metadata } from '@/lib/doc';
 import { useEffect, useState } from "react";
 import Input from '../components/input';
 
 export default function Page() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [posts, setDocs] = useState<Doc[]>([]);
+  const [posts, setDocs] = useState<Metadata[]>([]);
 
   useEffect(() => {
     fetch("writings/index.json")
