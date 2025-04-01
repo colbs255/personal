@@ -2,7 +2,7 @@ import Asciidoctor from "asciidoctor";
 import * as reveal from "@asciidoctor/reveal.js";
 import fs from "fs";
 import path from "path";
-import { slugify } from "../app/writings/posts";
+import { slugify } from "@/lib/util";
 
 const root = process.cwd();
 const talksDir = path.join(root, "content", "talks");
