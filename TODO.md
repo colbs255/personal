@@ -8,10 +8,14 @@
 
 ## Posts
 
+- single source of truth
+- mdx
+- gen index for posts
 - static generation of posts
 - format post list
 - post styling
 - diagrams
+- syntax highlighting
 
 ## Slides
 

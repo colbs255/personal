@@ -10,15 +10,15 @@ export default function Page() {
 
     useEffect(() => {
         fetch("writings/index.json")
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Failed to fetch JSON");
-                }
-                return response.json();
-            })
-            .then((jsonData) => {
-                setDocs(jsonData.data);
-            });
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Failed to fetch JSON");
+            }
+            return response.json();
+        })
+        .then((jsonData) => {
+            setDocs(jsonData.data);
+        });
     }, []);
 
     return (
