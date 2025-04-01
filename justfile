@@ -13,5 +13,8 @@ dev:
 build:
     npm install
     npx tsx src/script/presentations.ts
+test:
+    npm test
 format:
     npx prettier . --write
+
