@@ -8,13 +8,13 @@
 
 ## Posts
 
+- dates
 - single source of truth
-- gen index for posts
 - static generation of posts
 - format post list
 - post styling
 - diagrams
-- syntax highlighting
+- css module for highlighting
 
 ## Slides
 
