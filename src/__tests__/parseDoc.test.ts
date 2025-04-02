@@ -7,9 +7,13 @@ tags: vim, git, testing
 ---
 
 ## Document`;
-const expected = {
-    meta: { title: "Test Title", slug: "test-title", tags: ["vim", "git", "testing" ] },
-    content: "## Document",
-};
-expect(parseDoc(testData)).toStrictEqual(expected);
+    const expected = {
+        meta: {
+            title: "Test Title",
+            slug: "test-title",
+            tags: ["vim", "git", "testing"],
+        },
+        content: "## Document",
+    };
+    expect(parseDoc(testData)).toStrictEqual(expected);
 });

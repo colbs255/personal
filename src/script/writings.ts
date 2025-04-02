@@ -15,5 +15,5 @@ fs.readdirSync(talksDir).forEach((f) => {
 
 fs.writeFileSync(
     path.join(root, "public", "writings", "index.json"),
-    JSON.stringify({ "data": items}),
+    JSON.stringify({ data: items }),
 );

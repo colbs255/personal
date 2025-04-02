@@ -12,14 +12,14 @@ export function slugify(title: string): string {
 }
 
 export function parseDoc(fileContent: string): Doc {
-    const frontmatterRegex = /---\s*([\s\S]*?)\s*---/
+    const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
     const match = frontmatterRegex.exec(fileContent);
     const content = fileContent.replace(frontmatterRegex, "").trim();
-    const frontMatterLines = match![1].trim().split('\n');
+    const frontMatterLines = match![1].trim().split("\n");
 
     const result: Record<string, string> = {};
     frontMatterLines.forEach((line) => {
-        const components = line.split(': ')
+        const components = line.split(": ");
         const [key, value] = [components[0], components[1]];
         result[key] = value;
     });

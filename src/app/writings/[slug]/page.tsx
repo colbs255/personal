@@ -1,7 +1,7 @@
 import Post from "@/app/components/post";
 import { Doc } from "@/lib/doc";
 import { getWritings } from "@/lib/writings";
-import { notFound } from 'next/navigation';
+import { notFound } from "next/navigation";
 
 export default async function Page({
     params,
