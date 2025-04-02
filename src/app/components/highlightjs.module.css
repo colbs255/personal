@@ -7,113 +7,117 @@
   Touched: 2022
 */
 
+.root {
+
+}
+
 /*  Comment */
-.hljs-meta,
-.hljs-comment {
+.root .hljs-meta,
+.root .hljs-comment {
     color: #565f89;
 }
 
 /* Red */
 /*INFO: This keyword, HTML elements, Regex group symbol, CSS units, Terminal Red */
-.hljs-tag,
-.hljs-doctag,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-template-tag,
-.hljs-selector-pseudo,
-.hljs-selector-attr,
-.hljs-variable.language_,
-.hljs-deletion {
+.root .hljs-tag,
+.root .hljs-doctag,
+.root .hljs-selector-id,
+.root .hljs-selector-class,
+.root .hljs-regexp,
+.root .hljs-template-tag,
+.root .hljs-selector-pseudo,
+.root .hljs-selector-attr,
+.root .hljs-variable.language_,
+.root .hljs-deletion {
     color: #f7768e;
 }
 
 /*Orange */
 /*INFO: Number and Boolean constants, Language support constants */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-number,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-link {
+.root .hljs-variable,
+.root .hljs-template-variable,
+.root .hljs-number,
+.root .hljs-literal,
+.root .hljs-type,
+.root .hljs-params,
+.root .hljs-link {
     color: #ff9e64;
 }
 
 /*  Yellow */
 /* INFO:  	Function parameters, Regex character sets, Terminal Yellow */
-.hljs-built_in,
-.hljs-attribute {
+.root .hljs-built_in,
+.root .hljs-attribute {
     color: #e0af68;
 }
 /* cyan */
 /* INFO: Language support functions, CSS HTML elements */
-.hljs-selector-tag {
+.root .hljs-selector-tag {
     color: #2ac3de;
 }
 
 /* light blue */
 /* INFO: Object properties, Regex quantifiers and flags, Markdown headings, Terminal Cyan, Markdown code, Import/export keywords */
-.hljs-keyword,
-.hljs-title.function_,
-.hljs-title,
-.hljs-title.class_,
-.hljs-title.class_.inherited__,
-.hljs-subst,
-.hljs-property {
+.root .hljs-keyword,
+.root .hljs-title.function_,
+.root .hljs-title,
+.root .hljs-title.class_,
+.root .hljs-title.class_.inherited__,
+.root .hljs-subst,
+.root .hljs-property {
     color: #7dcfff;
 }
 
 /*Green*/
 /* INFO: Object literal keys, Markdown links, Terminal Green */
-.hljs-selector-tag {
+.root .hljs-selector-tag {
     color: #73daca;
 }
 
 /*Green(er) */
 /* INFO: Strings, CSS class names */
-.hljs-quote,
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
+.root .hljs-quote,
+.root .hljs-string,
+.root .hljs-symbol,
+.root .hljs-bullet,
+.root .hljs-addition {
     color: #9ece6a;
 }
 
 /* Blue */
 /* INFO:  	Function names, CSS property names, Terminal Blue */
-.hljs-code,
-.hljs-formula,
-.hljs-section {
+.root .hljs-code,
+.root .hljs-formula,
+.root .hljs-section {
     color: #7aa2f7;
 }
 
 /* Magenta */
 /*INFO: Control Keywords, Storage Types, Regex symbols and operators, HTML Attributes, Terminal Magenta */
-.hljs-name,
-.hljs-keyword,
-.hljs-operator,
-.hljs-keyword,
-.hljs-char.escape_,
-.hljs-attr {
+.root .hljs-name,
+.root .hljs-keyword,
+.root .hljs-operator,
+.root .hljs-keyword,
+.root .hljs-char.escape_,
+.root .hljs-attr {
     color: #bb9af7;
 }
 
 /* white*/
 /* INFO: Variables, Class names, Terminal White */
-.hljs-punctuation {
+.root .hljs-punctuation {
     color: #c0caf5;
 }
 
-.hljs {
+.root .hljs {
     background: #1a1b26;
     color: #9aa5ce;
 }
 
-.hljs-emphasis {
+.root .hljs-emphasis {
     font-style: italic;
 }
 
-.hljs-strong {
+.root .hljs-strong {
     font-weight: bold;
 }
