@@ -1,11 +1,14 @@
 import { Doc } from "@/lib/doc";
-import styles from "./post.module.css";
+import { evaluate } from "@mdx-js/mdx";
+import * as runtime from "react/jsx-runtime";
 
-export default function Page(doc: Doc) {
+export default async function Page(doc: Doc) {
+    // Compile the MDX source code to a function body
+    const { default: MDXContent } = await evaluate(doc.content, runtime);
+
     return (
-        <div
-            className={styles.post}
-            dangerouslySetInnerHTML={{ __html: doc.content }}
-        />
+        <>
+            <MDXContent />
+        </>
     );
 }
