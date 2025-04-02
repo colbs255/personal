@@ -14,7 +14,7 @@
 - format post list
 - post styling
 - diagrams
-- syntax highlighting (highlight.js)
+- css module for highlighting
 
 ## Slides
 
