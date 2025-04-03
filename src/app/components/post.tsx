@@ -2,7 +2,6 @@ import { Doc } from "@/lib/doc";
 import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 import hljs from "highlight.js";
-import "./highlightjs.css";
 
 function Code({ children, ...props }) {
     const language = props.className.replace("language-", "");

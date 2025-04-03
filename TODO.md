@@ -14,7 +14,7 @@
 - format post list
 - post styling
 - diagrams
-- css module for highlighting
+- css module for highlighting: module plus set dangerous inner html does not seem to work
 
 ## Slides
 
