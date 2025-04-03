@@ -19,7 +19,9 @@ export default async function Page({
             <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
                 {doc.meta.title}
             </h1>
-            <Post {...doc} />
+            <article className="prose">
+                <Post {...doc} />
+            </article>
         </div>
     );
 }
