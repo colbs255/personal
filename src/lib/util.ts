@@ -27,6 +27,7 @@ export function parseDoc(fileContent: string): Doc {
         title: result["title"],
         slug: slugify(result["title"]),
         tags: result["tags"].split(", "),
+        publishedAt: result["publishedAt"],
     };
     return { meta, content };
 }
