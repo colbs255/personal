@@ -9,6 +9,8 @@
 ## Posts
 
 - dates
+- TOC
+- linking
 - single source of truth
 - static generation of posts
 - format post list
