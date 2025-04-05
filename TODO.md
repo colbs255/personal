@@ -2,7 +2,6 @@
 
 ## Project
 
-- deploy
 - ci/cd
 - build cache
 
