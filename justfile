@@ -8,12 +8,12 @@ attributes := "\
     -a revealjsdir=reveal.js
     "
 
-dev:
-    npm run dev
 build:
     npm install
     npx tsx src/script/presentations.ts
     npm run build
+dev:
+    npm run dev
 test:
     npm test
 format:
