@@ -4,7 +4,7 @@
 
 - deploy
 - ci/cd
-- get a nice domain
+- build cache
 
 ## Posts
 
