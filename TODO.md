@@ -4,6 +4,8 @@
 
 - ci/cd
 - build cache
+- branch permissions
+- use custom domain
 
 ## Posts
 
@@ -16,7 +18,6 @@
 ## Slides
 
 - format slides list
-- static gen: only plugins and dist folders are needed
 
 ## About
 
