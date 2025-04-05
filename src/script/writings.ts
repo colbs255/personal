@@ -12,7 +12,9 @@ const items: Metadata[] = fs.readdirSync(talksDir).map((f) => {
     return parseDoc(rawDoc).meta;
 });
 
+const outputDir = path.join(root, "public", "writings");
+fs.mkdirSync(outputDir, { recursive: true });
 fs.writeFileSync(
-    path.join(root, "public", "writings", "index.json"),
+    path.join(outputDir, "index.json"),
     JSON.stringify({ data: items }),
 );
