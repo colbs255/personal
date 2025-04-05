@@ -2,15 +2,20 @@ import { Doc } from "@/lib/doc";
 import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 import hljs from "highlight.js";
+import { HTMLAttributes } from "react";
 
-function Code({ children, ...props }) {
-    const language = props.className.replace("language-", "");
+type Props = {
+    children: string;
+} & HTMLAttributes<HTMLElement>;
+
+function Code({ children, className = "", ...props }: Props) {
+    const language = className.replace("language-", "");
     const codeHTML = hljs.highlight(children, { language }).value;
     return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
 const components = {
-    h2: (props: any) => (
+    h2: (props: Props) => (
         <h2 className="mb-8 text-xl font-semibold" {...props} />
     ),
     code: Code,
