@@ -18,6 +18,7 @@
             pkgs.corepack
             pkgs.nodePackages.typescript
             pkgs.nodePackages.typescript-language-server
+            pkgs.just
           ];
         };
       });
