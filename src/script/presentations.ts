@@ -1,4 +1,5 @@
 import Asciidoctor from "asciidoctor";
+// @ts-expect-error: lib does not have ts types and I can't figure out how to make ts happy
 import * as reveal from "@asciidoctor/reveal.js";
 import fs from "fs";
 import path from "path";

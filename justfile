@@ -13,6 +13,7 @@ dev:
 build:
     npm install
     npx tsx src/script/presentations.ts
+    npm run build
 test:
     npm test
 format:

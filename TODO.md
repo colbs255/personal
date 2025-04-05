@@ -8,12 +8,11 @@
 
 ## Posts
 
-- TOC
-- section linking
-- single source of truth
-- static generation of posts
 - format post list
 - diagrams
+- single source of truth
+- TOC
+- section linking
 
 ## Slides
 

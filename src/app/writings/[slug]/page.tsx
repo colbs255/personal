@@ -3,11 +3,15 @@ import { Doc } from "@/lib/doc";
 import { getWritings } from "@/lib/writings";
 import { notFound } from "next/navigation";
 
-export default async function Page({
-    params,
-}: {
-    params: Promise<{ slug: string }>;
-}) {
+type Params = {
+    slug: string;
+};
+
+export function generateStaticParams(): Params[] {
+    return getWritings().map((doc) => ({ slug: doc.meta.slug }));
+}
+
+export default async function Page({ params }: { params: Promise<Params> }) {
     const { slug } = await params;
     const doc: Doc = getWritings().find((doc) => doc.meta.slug === slug) as Doc;
     if (!doc) {
