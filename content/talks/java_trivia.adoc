@@ -1,4 +1,6 @@
 = Java Trivia
+:publishedat: 2025-10-01
+:tags: java
 
 == Do these compile?
 
