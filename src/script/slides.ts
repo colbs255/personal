@@ -7,8 +7,8 @@ import { parseLocalDate, slugify } from "@/lib/util";
 import { Metadata } from "@/lib/types";
 
 const root = process.cwd();
-const talksDir = path.join(root, "content", "talks");
-const outputDir = path.join(root, "public", "talks");
+const slidesDir = path.join(root, "content", "slides");
+const outputDir = path.join(root, "public", "slides");
 fs.mkdirSync(outputDir, { recursive: true });
 fs.cpSync(
     path.join(root, "node_modules", "reveal.js", "dist"),
@@ -36,8 +36,8 @@ const attributes = [
 ];
 
 const records: Metadata[] = [];
-fs.readdirSync(talksDir).forEach((f) => {
-    const doc = asciidoctor.loadFile(path.join(talksDir, f), {
+fs.readdirSync(slidesDir).forEach((f) => {
+    const doc = asciidoctor.loadFile(path.join(slidesDir, f), {
         safe: "safe",
         backend: "revealjs",
         standalone: true,
@@ -52,6 +52,6 @@ fs.readdirSync(talksDir).forEach((f) => {
 });
 
 fs.writeFileSync(
-    path.join(root, "public", "talks", "index.json"),
+    path.join(root, "public", "slides", "index.json"),
     JSON.stringify({ data: records }),
 );
