@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 import { parseDoc } from "@/lib/util";
-import { Metadata } from "@/lib/doc";
+import { Metadata } from "@/lib/types";
 
 const root = process.cwd();
 const talksDir = path.join(root, "content", "writings");

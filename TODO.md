@@ -6,6 +6,7 @@
 - build cache
 - branch permissions
 - use custom domain
+- simplify types and components
 
 ## Posts
 
@@ -17,7 +18,7 @@
 
 ## Slides
 
-- format slides list
+- deprecate old slides repo
 
 ## About
 

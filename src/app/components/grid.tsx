@@ -1,4 +1,4 @@
-import { LocalDate } from "@/lib/doc";
+import { LocalDate } from "@/lib/types";
 import Link from "next/link";
 
 export interface Item {

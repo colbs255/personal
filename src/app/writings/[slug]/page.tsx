@@ -1,5 +1,6 @@
 import Post from "@/app/components/post";
-import { Doc, formatDate } from "@/lib/doc";
+import { Doc } from "@/lib/types";
+import { formatDate } from "@/lib/util";
 import { getWritings } from "@/lib/writings";
 import { notFound } from "next/navigation";
 

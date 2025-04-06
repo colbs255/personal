@@ -1,5 +1,5 @@
 "use client";
-import { Metadata } from "@/lib/doc";
+import { Metadata } from "@/lib/types";
 import { useEffect, useState } from "react";
 import Input from "../components/input";
 import Grid, { Item } from "../components/grid";

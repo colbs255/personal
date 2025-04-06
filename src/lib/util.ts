@@ -1,8 +1,14 @@
-import { Doc, Metadata, LocalDate } from "./doc";
+import { Doc, Metadata, LocalDate } from "./types";
 
 function parseLocalDate(s: string): LocalDate {
     const [year, month, day] = s.split("-").map(Number);
     return { year, month, day };
+}
+
+export function formatDate(date: LocalDate): string {
+    const month = String(date.month).padStart(2, "0");
+    const day = String(date.day).padStart(2, "0");
+    return `${date.year}-${month}-${day}`;
 }
 
 export function slugify(title: string): string {
