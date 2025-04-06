@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import Grid, { Item } from "../components/grid";
-import { LocalDate } from "@/lib/doc";
+import { LocalDate } from "@/lib/types";
 
 export default function Page() {
     const filePath = path.join(process.cwd(), "public", "talks", "index.json");

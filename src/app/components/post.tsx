@@ -1,4 +1,4 @@
-import { Doc } from "@/lib/doc";
+import { Doc } from "@/lib/types";
 import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 import hljs from "highlight.js";

@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs";
-import { Doc } from "@/lib/doc";
+import { Doc } from "@/lib/types";
 import { parseDoc } from "@/lib/util";
 
 export function getWritings(): Doc[] {
