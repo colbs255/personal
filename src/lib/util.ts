@@ -5,10 +5,16 @@ export function parseLocalDate(s: string): LocalDate {
     return { year, month, day };
 }
 
-export function formatDate(date: LocalDate): string {
+export function formatLocalDate(date: LocalDate): string {
     const month = String(date.month).padStart(2, "0");
     const day = String(date.day).padStart(2, "0");
     return `${date.year}-${month}-${day}`;
+}
+
+export function compareLocalDate(a: LocalDate, b: LocalDate): number {
+    if (a.year !== b.year) return a.year - b.year;
+    if (a.month !== b.month) return a.month - b.month;
+    return a.day - b.day;
 }
 
 export function slugify(title: string): string {

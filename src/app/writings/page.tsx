@@ -3,6 +3,7 @@ import { Metadata } from "@/lib/types";
 import { useEffect, useState } from "react";
 import Input from "../components/input";
 import Grid, { Item } from "../components/grid";
+import { compareLocalDate } from "@/lib/util";
 
 export default function Page() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -28,7 +29,8 @@ export default function Page() {
             date: v.publishedAt,
             href: `/writings/${v.slug}`,
             tags: v.tags,
-        }));
+        }))
+        .sort((a, b) => compareLocalDate(b.date, a.date));
     return (
         <div>
             <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
