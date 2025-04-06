@@ -1,5 +1,5 @@
 import Post from "@/app/components/post";
-import { Doc } from "@/lib/doc";
+import { Doc, formatDate } from "@/lib/doc";
 import { getWritings } from "@/lib/writings";
 import { notFound } from "next/navigation";
 
@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             </h1>
             <div className="flex justify-between items-center mt-2 mb-8 text-sm">
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    {doc.meta.publishedAt}
+                    {formatDate(doc.meta.publishedAt)}
                 </p>
             </div>
             <article className="prose">
