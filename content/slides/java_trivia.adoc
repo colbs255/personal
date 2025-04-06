@@ -1,5 +1,5 @@
 = Java Trivia
-:publishedat: 2025-10-01
+:publishedat: 2021-12-01
 :tags: java
 
 == Do these compile?

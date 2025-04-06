@@ -1,4 +1,5 @@
 import { LocalDate } from "@/lib/types";
+import { formatLocalDate } from "@/lib/util";
 import Link from "next/link";
 
 export interface Item {
@@ -25,9 +26,11 @@ export default function Grid({ items, openInNewTab = false }: Props) {
                     rel={openInNewTab ? "noopener noreferrer" : undefined}
                 >
                     <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
+                        <p className="text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums">
+                            {formatLocalDate(item.date)}
+                        </p>
                         <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-                            {item.name}{" "}
-                            {item.tags.length > 0 && item.tags.join(", ")}
+                            {item.name}
                         </p>
                     </div>
                 </Link>
