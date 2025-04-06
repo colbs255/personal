@@ -1,4 +1,9 @@
-import { Doc, Metadata } from "./doc";
+import { Doc, Metadata, LocalDate } from "./doc";
+
+function parseLocalDate(s: string): LocalDate {
+    const [year, month, day] = s.split("-").map(Number);
+    return { year, month, day };
+}
 
 export function slugify(title: string): string {
     return title
@@ -27,7 +32,7 @@ export function parseDoc(fileContent: string): Doc {
         title: result["title"],
         slug: slugify(result["title"]),
         tags: result["tags"].split(", "),
-        publishedAt: result["publishedAt"],
+        publishedAt: parseLocalDate(result["publishedAt"]),
     };
     return { meta, content };
 }
