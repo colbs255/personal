@@ -1,12 +1,10 @@
 "use client";
 import { Metadata } from "@/lib/types";
 import { useEffect, useState } from "react";
-import Input from "../components/input";
 import Grid, { Item } from "../components/grid";
 import { compareLocalDate } from "@/lib/util";
 
 export default function Page() {
-    const [searchTerm, setSearchTerm] = useState("");
     const [posts, setDocs] = useState<Metadata[]>([]);
 
     useEffect(() => {
@@ -23,7 +21,6 @@ export default function Page() {
     }, []);
 
     const items: Item[] = posts
-        .filter((v: Metadata) => v.title.toLowerCase().includes(searchTerm))
         .map((v: Metadata) => ({
             name: v.title,
             date: v.publishedAt,
@@ -36,7 +33,6 @@ export default function Page() {
             <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
                 Writings
             </h1>
-            <Input placeholder="Filter..." onChange={setSearchTerm} />
             <Grid items={items} />
         </div>
     );

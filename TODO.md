@@ -6,6 +6,7 @@
 - build cache
 - branch permissions
 - use custom domain
+- license
 
 ## Posts
 
