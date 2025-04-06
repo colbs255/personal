@@ -3,7 +3,8 @@ import Asciidoctor from "asciidoctor";
 import * as reveal from "@asciidoctor/reveal.js";
 import fs from "fs";
 import path from "path";
-import { slugify } from "@/lib/util";
+import { parseLocalDate, slugify } from "@/lib/util";
+import { LocalDate, Metadata } from "@/lib/types";
 
 const root = process.cwd();
 const talksDir = path.join(root, "content", "talks");
@@ -34,7 +35,7 @@ const attributes = [
     "revealjsdir=reveal.js",
 ];
 
-const slugMap: Record<string, string> = {};
+const records: Metadata[] = [];
 fs.readdirSync(talksDir).forEach((f) => {
     const doc = asciidoctor.loadFile(path.join(talksDir, f), {
         safe: "safe",
@@ -44,11 +45,13 @@ fs.readdirSync(talksDir).forEach((f) => {
     });
     const title = doc.getTitle() ?? "unknown";
     const slug = slugify(title) + ".html";
-    slugMap[slug] = title;
+    const publishedAt = parseLocalDate(doc.getAttribute("publishedat"));
+    const tags: string[] = doc.getAttribute("tags", "").split(", ");
+    records.push({ title, slug, publishedAt, tags });
     fs.writeFileSync(path.join(outputDir, slug), doc.convert());
 });
 
 fs.writeFileSync(
     path.join(root, "public", "talks", "index.json"),
-    JSON.stringify(slugMap),
+    JSON.stringify({ data: records }),
 );

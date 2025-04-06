@@ -1,5 +1,7 @@
 = Java 25
 :figure-caption!:
+:publishedat: 2025-10-01
+:tags: java
 
 == Java Releases
 
