@@ -5,10 +5,10 @@ import { parseDoc } from "@/lib/util";
 import { Metadata } from "@/lib/types";
 
 const root = process.cwd();
-const talksDir = path.join(root, "content", "writings");
+const writingsDir = path.join(root, "content", "writings");
 
-const items: Metadata[] = fs.readdirSync(talksDir).map((f) => {
-    const rawDoc = fs.readFileSync(path.join(talksDir, f), "utf-8");
+const items: Metadata[] = fs.readdirSync(writingsDir).map((f) => {
+    const rawDoc = fs.readFileSync(path.join(writingsDir, f), "utf-8");
     return parseDoc(rawDoc).meta;
 });
 

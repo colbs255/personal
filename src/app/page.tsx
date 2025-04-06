@@ -70,7 +70,7 @@ export default function Home() {
                 {displayedText}
             </h1>
             <p className="mb-4">
-                {`Hi! This is my personal site where I host my writings and talks.`}
+                {`Hi! This is my personal site where I host my writings and slides.`}
             </p>
         </div>
     );
