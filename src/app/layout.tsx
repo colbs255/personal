@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 function WarningBanner() {
     return (
         <div className="bg-blue-500 text-white text-center p-2 rounded-md">
-        <p>This site is in the early stages of development!</p>
+            <p>This site is in the early stages of development!</p>
         </div>
     );
 }

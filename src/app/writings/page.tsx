@@ -23,14 +23,19 @@ export default function Page() {
 
     const items: Item[] = posts
         .filter((v: Metadata) => v.title.toLowerCase().includes(searchTerm))
-        .map((v: Metadata) => ({ name: v.title, date: v.publishedAt, href: `/writings/${v.slug}`, tags: v.tags}));
+        .map((v: Metadata) => ({
+            name: v.title,
+            date: v.publishedAt,
+            href: `/writings/${v.slug}`,
+            tags: v.tags,
+        }));
     return (
         <div>
             <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
                 Writings
             </h1>
             <Input placeholder="Filter..." onChange={setSearchTerm} />
-            <Grid items={items}/>
+            <Grid items={items} />
         </div>
     );
 }
