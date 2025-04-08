@@ -3,8 +3,8 @@ import fs from "fs";
 import { Doc } from "@/lib/types";
 import { parseDoc } from "@/lib/util";
 
-export function getWritings(): Doc[] {
-    const filePath = path.join(process.cwd(), "content", "writings");
+export function getPosts(): Doc[] {
+    const filePath = path.join(process.cwd(), "content", "posts");
     const docs = fs
         .readdirSync(filePath, "utf8")
         .filter((f) => path.extname(f) === ".mdx")

@@ -5,8 +5,8 @@
 - ci/cd
 - build cache
 - branch permissions
-- use custom domain
 - license
+- cleanup git history?
 
 ## Posts
 

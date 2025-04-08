@@ -1,1 +1,1 @@
-My personal website where I host my slides and writings.
+My personal website where I host my posts and slides.

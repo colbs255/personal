@@ -11,7 +11,7 @@ attributes := "\
 build:
     npm install
     npx tsx src/script/slides.ts
-    npx tsx src/script/writings.ts
+    npx tsx src/script/posts.ts
     npm run build
 dev:
     npm run dev
