@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Title from "./components/title";
 
 const name = "/Colby/Chance";
 const joke = "/Colby/Cheese";
@@ -66,9 +67,7 @@ export default function Home() {
 
     return (
         <div>
-            <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-                {displayedText}
-            </h1>
+            <Title>{displayedText}</Title>
             <p className="mb-4">
                 {`Hi! This is my personal site where I host my writings and slides.`}
             </p>

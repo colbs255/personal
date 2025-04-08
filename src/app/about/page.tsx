@@ -1,9 +1,9 @@
+import Title from "../components/title";
+
 export default function About() {
     return (
         <div>
-            <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-                About Me
-            </h1>
+            <Title>About Me</Title>
             <p className="mb-4">{`I am a software engineer.`}</p>
         </div>
     );

@@ -1,4 +1,5 @@
 import Post from "@/app/components/post";
+import Title from "@/app/components/title";
 import { Doc } from "@/lib/types";
 import { formatLocalDate } from "@/lib/util";
 import { getWritings } from "@/lib/writings";
@@ -21,9 +22,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
     return (
         <section>
-            <h1 className="title font-semibold text-2xl tracking-tighter">
-                {doc.meta.title}
-            </h1>
+            <Title>{doc.meta.title}</Title>
             <div className="flex justify-between items-center mt-2 mb-8 text-sm">
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     {formatLocalDate(doc.meta.publishedAt)}

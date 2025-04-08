@@ -3,6 +3,7 @@ import path from "path";
 import Grid, { Item } from "../components/grid";
 import { Metadata } from "@/lib/types";
 import { compareLocalDate } from "@/lib/util";
+import Title from "../components/title";
 
 export default function Page() {
     const filePath = path.join(process.cwd(), "public", "slides", "index.json");
@@ -19,9 +20,7 @@ export default function Page() {
         .sort((a, b) => compareLocalDate(b.date, a.date));
     return (
         <div>
-            <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-                Slides
-            </h1>
+            <Title>Slides</Title>
             <Grid items={items} openInNewTab={true} />
         </div>
     );
