@@ -9,7 +9,7 @@ export default function Page() {
     const [posts, setDocs] = useState<Metadata[]>([]);
 
     useEffect(() => {
-        fetch("writings/index.json")
+        fetch("posts/index.json")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Failed to fetch JSON");
@@ -25,13 +25,13 @@ export default function Page() {
         .map((v: Metadata) => ({
             name: v.title,
             date: v.publishedAt,
-            href: `/writings/${v.slug}`,
+            href: `/posts/${v.slug}`,
             tags: v.tags,
         }))
         .sort((a, b) => compareLocalDate(b.date, a.date));
     return (
         <div>
-            <Title>Writings</Title>
+            <Title>Posts</Title>
             <Grid items={items} />
         </div>
     );

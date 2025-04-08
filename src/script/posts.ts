@@ -5,14 +5,14 @@ import { parseDoc } from "@/lib/util";
 import { Metadata } from "@/lib/types";
 
 const root = process.cwd();
-const writingsDir = path.join(root, "content", "writings");
+const postsDir = path.join(root, "content", "posts");
 
-const items: Metadata[] = fs.readdirSync(writingsDir).map((f) => {
-    const rawDoc = fs.readFileSync(path.join(writingsDir, f), "utf-8");
+const items: Metadata[] = fs.readdirSync(postsDir).map((f) => {
+    const rawDoc = fs.readFileSync(path.join(postsDir, f), "utf-8");
     return parseDoc(rawDoc).meta;
 });
 
-const outputDir = path.join(root, "public", "writings");
+const outputDir = path.join(root, "public", "posts");
 fs.mkdirSync(outputDir, { recursive: true });
 fs.writeFileSync(
     path.join(outputDir, "index.json"),

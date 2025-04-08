@@ -2,7 +2,7 @@ import Post from "@/app/components/post";
 import Title from "@/app/components/title";
 import { Doc } from "@/lib/types";
 import { formatLocalDate } from "@/lib/util";
-import { getWritings } from "@/lib/writings";
+import { getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
 
 type Params = {
@@ -10,12 +10,12 @@ type Params = {
 };
 
 export function generateStaticParams(): Params[] {
-    return getWritings().map((doc) => ({ slug: doc.meta.slug }));
+    return getPosts().map((doc) => ({ slug: doc.meta.slug }));
 }
 
 export default async function Page({ params }: { params: Promise<Params> }) {
     const { slug } = await params;
-    const doc: Doc = getWritings().find((doc) => doc.meta.slug === slug) as Doc;
+    const doc: Doc = getPosts().find((doc) => doc.meta.slug === slug) as Doc;
     if (!doc) {
         notFound();
     }
