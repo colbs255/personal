@@ -3,6 +3,7 @@ import { Metadata } from "@/lib/types";
 import { useEffect, useState } from "react";
 import Grid, { Item } from "../components/grid";
 import { compareLocalDate } from "@/lib/util";
+import Title from "../components/title";
 
 export default function Page() {
     const [posts, setDocs] = useState<Metadata[]>([]);
@@ -30,9 +31,7 @@ export default function Page() {
         .sort((a, b) => compareLocalDate(b.date, a.date));
     return (
         <div>
-            <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-                Writings
-            </h1>
+            <Title>Writings</Title>
             <Grid items={items} />
         </div>
     );
