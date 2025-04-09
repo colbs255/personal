@@ -2,6 +2,9 @@ import { Doc, Metadata, LocalDate } from "./types";
 
 export function parseLocalDate(s: string): LocalDate {
     const [year, month, day] = s.split("-").map(Number);
+    if (!year || !month || !day) {
+        throw new Error(`Invalid date: ${s} Expected YYYY-MM-DD`);
+    }
     return { year, month, day };
 }
 
@@ -30,16 +33,25 @@ export function slugify(title: string): string {
 
 export function parseDoc(fileContent: string): Doc {
     const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-    const match = frontmatterRegex.exec(fileContent);
+    const match = frontmatterRegex.exec(fileContent)?.[1];
+    if (!match) {
+        throw new Error("Frontmatter not found");
+    }
     const content = fileContent.replace(frontmatterRegex, "").trim();
-    const frontMatterLines = match![1].trim().split("\n");
+    const frontMatterLines = match.trim().split("\n");
 
     const result: Record<string, string> = {};
     frontMatterLines.forEach((line) => {
         const components = line.split(": ");
         const [key, value] = [components[0], components[1]];
+        if (!key || !value) {
+            throw new Error(`Expected line ${line} to have format k: v`);
+        }
         result[key] = value;
     });
+    if (!result["title"] || !result["tags"] || !result["publishedAt"]) {
+        throw new Error("Doc must have title, tags, and publishedAt");
+    }
     const meta: Metadata = {
         title: result["title"],
         slug: slugify(result["title"]),
