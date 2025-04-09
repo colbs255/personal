@@ -1,4 +1,4 @@
-= Java after 11
+= Java 17
 :publishedat: 2021-12-01
 :tags: java
 
