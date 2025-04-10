@@ -9,6 +9,10 @@ type Props = {
 } & HTMLAttributes<HTMLElement>;
 
 function Code({ children, className = "", ...props }: Props) {
+    if (!className.startsWith("language-")) {
+        // No language so no syntax highlighting
+        return <code {...props}>{children}</code>;
+    }
     const language = className.replace("language-", "");
     const codeHTML = hljs.highlight(children, { language }).value;
     return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
