@@ -1,17 +1,13 @@
-import fs from "fs";
-import path from "path";
-import { Metadata } from "@/lib/types";
 import Grid, { Item } from "../components/grid";
 import { compareLocalDate } from "@/lib/util";
 import Title from "../components/title";
+import { getPosts } from "@/lib/posts";
 
 export default function Page() {
-    const filePath = path.join(process.cwd(), "public", "posts", "index.json");
-    const posts: Metadata[] = JSON.parse(
-        fs.readFileSync(filePath, "utf8"),
-    ).data;
+    const posts = getPosts();
     const items: Item[] = posts
-        .map((v: Metadata) => ({
+        .map((post) => post.meta)
+        .map((v) => ({
             name: v.title,
             date: v.publishedAt,
             href: `/posts/${v.slug}`,
