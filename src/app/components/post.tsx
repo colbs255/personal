@@ -19,9 +19,6 @@ function Code({ children, className = "", ...props }: Props) {
 }
 
 const components = {
-    h2: (props: Props) => (
-        <h2 className="mb-8 text-xl font-semibold" {...props} />
-    ),
     code: Code,
 };
 
