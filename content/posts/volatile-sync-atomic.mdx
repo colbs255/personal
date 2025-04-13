@@ -128,49 +128,8 @@ standard lock. They are actually less performant when contention is
 
 ## Summary
 
-<table>
-    <colgroup>
-        <col style="width: 25%" />
-        <col style="width: 25%" />
-        <col style="width: 25%" />
-        <col style="width: 25%" />
-    </colgroup>
-    <thead>
-        <tr class="header">
-            <th style="text-align: left;"></th>
-            <th style="text-align: left;">Volatile</th>
-            <th style="text-align: left;">Synchronized</th>
-            <th style="text-align: left;">Atomic</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="odd">
-            <td style="text-align: left;">
-                <p>Are changes visible to other threads?</p>
-            </td>
-            <td style="text-align: left;">
-                <p>Yes</p>
-            </td>
-            <td style="text-align: left;">
-                <p>Yes</p>
-            </td>
-            <td style="text-align: left;">
-                <p>Yes</p>
-            </td>
-        </tr>
-        <tr class="even">
-            <td style="text-align: left;">
-                <p>Does it enable atomicity?</p>
-            </td>
-            <td style="text-align: left;">
-                <p>No</p>
-            </td>
-            <td style="text-align: left;">
-                <p>Yes</p>
-            </td>
-            <td style="text-align: left;">
-                <p>Yes</p>
-            </td>
-        </tr>
-    </tbody>
-</table>
+|                                                                           | Volatile                                | Synchronized                            | Atomic                                  |
+|---------------------------------------------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|
+| <br>                Are changes visible to other threads?<br>             | <br>                Yes<br>             | <br>                Yes<br>             | <br>                Yes<br>             |
+| <br>                Does it enable atomicity?<br>                         | <br>                No<br>              | <br>                Yes<br>             | <br>                Yes<br>             |
+
