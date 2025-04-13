@@ -1,34 +1,19 @@
 import { Doc } from "@/lib/types";
-import { evaluate } from "@mdx-js/mdx";
-import * as runtime from "react/jsx-runtime";
-import hljs from "highlight.js";
-import { HTMLAttributes } from "react";
-
-type Props = {
-    children: string;
-} & HTMLAttributes<HTMLElement>;
-
-function Code({ children, className = "", ...props }: Props) {
-    if (!className.startsWith("language-")) {
-        // No language so no syntax highlighting
-        return <code {...props}>{children}</code>;
-    }
-    const language = className.replace("language-", "");
-    const codeHTML = hljs.highlight(children, { language }).value;
-    return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
-}
-
-const components = {
-    code: Code,
-};
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
+import remarkRehype from "remark-rehype";
+import rehypeHighlight from "rehype-highlight";
+import rehypeStringify from "rehype-stringify";
 
 export default async function Page(doc: Doc) {
-    // Compile the MDX source code to a function body
-    const { default: MDXContent } = await evaluate(doc.content, runtime);
+    const html = await unified()
+        .use(remarkParse)
+        .use(remarkGfm)
+        .use(remarkRehype)
+        .use(rehypeHighlight)
+        .use(rehypeStringify)
+        .process(doc.content);
 
-    return (
-        <>
-            <MDXContent components={components} />
-        </>
-    );
+    return <div dangerouslySetInnerHTML={{ __html: String(html) }} />;
 }
