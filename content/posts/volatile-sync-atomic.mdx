@@ -128,8 +128,8 @@ standard lock. They are actually less performant when contention is
 
 ## Summary
 
-|              | Changes visible to other threads? | Atomic? |
-| ------------ | --------------------------------- | ------- |
-| Volatile     | Yes                               | No      |
-| Synchronized | Yes                               | Yes     |
-| Atomic       | Yes                               | Yes     |
+|              | Changes visible to other threads? | Atomic? | CAS? |
+| ------------ | --------------------------------- | ------- | ---- |
+| Volatile     | Yes                               | No      | No   |
+| Synchronized | Yes                               | Yes     | No   |
+| Atomic       | Yes                               | Yes     | Yes  |
