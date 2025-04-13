@@ -1,0 +1,135 @@
+---
+title: Volatile and Synchronized and Atomic, Oh My!
+tags: java, concurrency
+publishedAt: 2025-04-01
+---
+
+Java provides several tools for dealing with concurrency. Using these
+tools improperly can cause deadlocks and degraded performance, so it’s
+important for developers to understand them. This article explains why
+each of these tools exist and when to use each one.
+
+## Concurrency is Hard
+
+To understand these constructs, you need to understand the 2 main
+difficulties with concurrent programming: memory visibility and
+atomicity.
+
+### Memory Visibility
+
+The program below starts a thread that waits for the main thread to set
+the `stopRequested` variable to true.
+
+```java
+import java.util.concurrent.TimeUnit;
+
+class Example {
+
+    private static boolean stopRequested = false;
+
+    public static void main(String[] args) throws InterruptedException {
+        Thread backgroundThread = new Thread(() -> {
+            int i = 0;
+            while (!stopRequested) {
+                i++;
+            }
+        });
+
+        backgroundThread.start();
+        TimeUnit.SECONDS.sleep(1);
+        stopRequested = true;
+    }
+}
+```
+
+If you run it, it probably will not terminate; the background thread
+will always think `stopRequested` is false and continue to loop. Why?
+The java memory model does not guarantee that writes on a variable in
+one thread will appear in another thread. In other words, memory
+modifications are not always **visible** to other threads.
+
+### Atomicity
+
+Consider the program below:
+
+```java
+int x = 1;
+x++;
+```
+
+While `x++` is one line of code, it is actually several instructions:
+
+1.  Load value for x
+
+2.  Increment the value by 1
+
+3.  Store the new value
+
+Consider 2 threads `a` and `b` running this line simultaneously:
+
+1.  Thread a loads the current value of x: 1
+
+2.  Thread b loads the current value of x: 1
+
+3.  Thread a increments the value 2
+
+4.  Thread b increments the value 2
+
+5.  Thread a stores 2 into x
+
+6.  Thread b stores 2 into x
+
+Two increment operations are performed, but the final value is only
+incremented by 1, clearly that is wrong. This shows how operations (even
+1 liners) can be interleaved in strange ways that result in bugs; they
+are not **atomic**.
+
+## Solutions for Concurrency
+
+Concurrent programming is **hard** and that’s why these constructs
+exist; they provide guarantees that allow you to better reason about
+your programs.
+
+### Volatile
+
+Volatile variables address the memory visibility problem: they tell Java
+to always grab the latest value from the memory cache that is shared
+between threads. In other words, when a thread writes to a variable, a
+thread that later reads the value is guaranteed to see the latest value.
+This means volatile variables fix the loop example but not the `x++`
+example.
+
+### Synchronized
+
+Synchronized blocks have stronger semantics than volatile; they address
+the memory visibility problem, but they **also address the atomicity problem**
+by ensuring only 1 thread is running the synchronized block at a time.
+This means synchronized blocks fix both examples above, but they are
+less performant than volatile variables due to locking.
+
+### Atomic
+
+Atomic variables have volatile semantics with `get` and `set` but also
+solve the atomicity problem via compare and set (CAS) operations
+(`compareAndSet` method). Unlike synchronized blocks, they are
+non-blocking, resulting in better performance than synchronized blocks
+in _most_ cases.
+
+What is CAS?
+
+CAS is a form of non-locking synchronization. It is an atomic
+instruction that checks the current value and only applies the new value
+if the current value equals the expected value. CAS is generally more
+performant than traditional locks because it does not actually lock or
+reschedule threads on the CPU. Like everything else, CAS comes with
+trade-offs. Designing algorithms with CAS is more difficult than using a
+standard lock. They are actually less performant when contention is
+**very** high, but still faster in most real world cases.
+
+## Summary
+
+|              | Changes visible to other threads? | Atomic? | CAS? |
+| ------------ | --------------------------------- | ------- | ---- |
+| Volatile     | Yes                               | No      | No   |
+| Synchronized | Yes                               | Yes     | No   |
+| Atomic       | Yes                               | Yes     | Yes  |
