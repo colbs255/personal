@@ -107,7 +107,7 @@ by ensuring only 1 thread is running the synchronized block at a time.
 This means synchronized blocks fix both examples above, but they are
 less performant than volatile variables due to locking.
 
-### Atomic Variables
+### Atomic
 
 Atomic variables have volatile semantics with `get` and `set` but also
 solve the atomicity problem via compare and set (CAS) operations
@@ -128,8 +128,8 @@ standard lock. They are actually less performant when contention is
 
 ## Summary
 
-|                                                                           | Volatile                                | Synchronized                            | Atomic                                  |
-|---------------------------------------------------------------------------|-----------------------------------------|-----------------------------------------|-----------------------------------------|
-| Are changes visible to other threads? | Yes | Yes | Yes |
-| Does it enable atomicity?                         | No | Yes | Yes |
-
+|              | Changes visible to other threads? | Atomic? |
+| ------------ | --------------------------------- | ------- |
+| Volatile     | Yes                               | No      |
+| Synchronized | Yes                               | Yes     |
+| Atomic       | Yes                               | Yes     |
