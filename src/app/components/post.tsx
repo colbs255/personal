@@ -7,7 +7,6 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 
 export default async function Page(doc: Doc) {
-    const x = 0;
     const html = await unified()
         .use(remarkParse)
         .use(remarkGfm)
