@@ -40,8 +40,7 @@ function admonitionTransform(tree: Root) {
         if (!(node.name in admonitionStyles)) {
             return;
         }
-        node.data ??= {};
-        node.data.hName = "div";
+        console.log(node);
         const baseClasses = [
             "flex",
             "items-start",
@@ -51,10 +50,30 @@ function admonitionTransform(tree: Root) {
             "p-4",
         ];
         const admonition = admonitionStyles[node.name]!;
-        node.data.hProperties = {
-            className: [...baseClasses, admonition.backgroundColor, admonition.borderColor ],
+        node.data = {
+            hName: "div",
+            hProperties: {
+                className: [...baseClasses, admonition.backgroundColor, admonition.borderColor ],
+            }
         };
+        node.children.unshift({
+            type: "paragraph",
+            children: [{type: "text", value: "INFO"}],
+            
+        })
+        console.log(node);
     });
+}
+
+function Test() {
+    return (
+        <div className="border border-blue-300 rounded-lg overflow-hidden shadow-sm">
+            <div className="bg-blue-500 text-white font-semibold px-4 py-2 text-sm">
+                Info
+            </div>
+            <p>CAS is a form of non-locking synchronization. It is an atomic instruction that checks the current value and only applies the new value if the current value equals the expected value. CAS is generally more performant than traditional locks because it does not actually lock or reschedule threads on the CPU. Like everything else, CAS comes with trade-offs. Designing algorithms with CAS is more difficult than using a standard lock. They are actually less performant when contention is very high, but still faster in most real world cases.</p>
+        </div>
+    );
 }
 
 export default async function Page(doc: Doc) {
@@ -68,5 +87,6 @@ export default async function Page(doc: Doc) {
         .use(rehypeStringify)
         .process(doc.content);
 
+    return Test();
     return <div dangerouslySetInnerHTML={{ __html: String(html) }} />;
 }
