@@ -4,28 +4,6 @@ import * as runtime from "react/jsx-runtime";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 
-function Info(props: AdmonitionProps) {
-    return Admonition(
-        {
-            defaultTitle: "Info",
-            titleColor: "bg-blue-700",
-            borderColor: "border-blue-400",
-        },
-        props,
-    );
-}
-
-function Warning(props: AdmonitionProps) {
-    return Admonition(
-        {
-            defaultTitle: "Warning",
-            titleColor: "bg-yellow-700",
-            borderColor: "border-yellow-400",
-        },
-        props,
-    );
-}
-
 type AdmonitionProps = {
     title?: string;
     children: React.ReactNode;
@@ -54,8 +32,24 @@ function Admonition(schema: AdmonitionSchema, props: AdmonitionProps) {
 
 function mdxComponents() {
     return {
-        Info,
-        Warning,
+        Info: (props: AdmonitionProps) =>
+            Admonition(
+                {
+                    defaultTitle: "Info",
+                    titleColor: "bg-blue-700",
+                    borderColor: "border-blue-400",
+                },
+                props,
+            ),
+        Warning: (props: AdmonitionProps) =>
+            Admonition(
+                {
+                    defaultTitle: "Warning",
+                    titleColor: "bg-yellow-700",
+                    borderColor: "border-yellow-400",
+                },
+                props,
+            ),
     };
 }
 
