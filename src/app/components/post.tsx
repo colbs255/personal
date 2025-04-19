@@ -5,11 +5,11 @@ import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 
 function Info(props: AdmonitionProps) {
-    return Admonition({ defaultTitle: "Info", backgroundColor: "bg-blue-500", }, props);
+    return Admonition({ defaultTitle: "Info", titleColor: "bg-blue-900", borderColor: "border-blue-500", }, props);
 }
 
 function Warning(props: AdmonitionProps) {
-    return Admonition({ defaultTitle: "Warning", backgroundColor: "bg-blue-500", }, props);
+    return Admonition({ defaultTitle: "Warning", titleColor: "bg-yellow-900", borderColor: "border-yellow-500", }, props);
 }
 
 type AdmonitionProps = {
@@ -19,16 +19,19 @@ type AdmonitionProps = {
 
 type AdmonitionSchema = {
     defaultTitle: string,
-    backgroundColor: string,
+    titleColor: string,
+    borderColor: string,
 };
 
 function Admonition(schema: AdmonitionSchema, props: AdmonitionProps) {
     return (
-        <div className="border border-blue-300 rounded-lg overflow-hidden shadow-sm">
-            <div className="bg-blue-500 text-white font-semibold px-4 py-2 text-sm">
+        <div className={`border ${schema.borderColor} rounded-lg overflow-hidden shadow-sm`}>
+            <div className={`${schema.titleColor} text-white font-semibold px-4 py-2 text-sm`}>
                 {props.title ?? schema.defaultTitle}
             </div>
-            {props.children}
+            <div className="px-3">
+                {props.children}
+            </div>
         </div>
     );
 }
