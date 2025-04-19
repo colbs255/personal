@@ -9,19 +9,48 @@ type AdmonitionProps = {
     children: React.ReactNode;
 };
 
-function Info(props: AdmonitionProps) {
+type AdmonitionSchema = {
+    defaultTitle: string;
+    titleColor: string;
+    borderColor: string;
+};
+
+function Admonition(schema: AdmonitionSchema, props: AdmonitionProps) {
     return (
-        <div className="border border-blue-300 rounded-lg overflow-hidden shadow-sm">
-            <div className="bg-blue-500 text-white font-semibold px-4 py-2 text-sm">
-                {props.title ?? "Info"}
+        <div
+            className={`border-2 ${schema.borderColor} rounded-lg overflow-hidden shadow-sm mb-2`}
+        >
+            <div
+                className={`${schema.titleColor} text-white font-semibold px-4 py-2 text-sm`}
+            >
+                {props.title ?? schema.defaultTitle}
             </div>
-            {props.children}
+            <div className="px-3">{props.children}</div>
         </div>
     );
 }
 
 function mdxComponents() {
-    return { Info };
+    return {
+        Info: (props: AdmonitionProps) =>
+            Admonition(
+                {
+                    defaultTitle: "Info",
+                    titleColor: "bg-blue-700",
+                    borderColor: "border-blue-400",
+                },
+                props,
+            ),
+        Warning: (props: AdmonitionProps) =>
+            Admonition(
+                {
+                    defaultTitle: "Warning",
+                    titleColor: "bg-yellow-700",
+                    borderColor: "border-yellow-400",
+                },
+                props,
+            ),
+    };
 }
 
 export default async function Page(doc: Doc) {
