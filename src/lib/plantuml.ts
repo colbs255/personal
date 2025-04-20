@@ -42,8 +42,8 @@ export default function generatePlantUmlSvg(source: string) {
         throw new Error(`Failed to run PlantUML: ${result.error.message}`);
     }
 
-    if (result.status !== 0) {
-        throw new Error(`PlantUML exited with code ${result.status}: ${result.stderr}`);
+    if (result.stderr && result.stderr.toString().trim()) {
+        throw new Error(`PlantUML stderr: ${result.stderr.toString().trim()}`);
     }
 
     return publicPath;
