@@ -4,7 +4,7 @@ type PlantUMLProps = {
     source: string;
 };
 
-export default async function PlantUML({ source }: PlantUMLProps) {
-    const src = await generatePlantUmlSvg(source);
+export default function PlantUML({ source }: PlantUMLProps) {
+    const src = generatePlantUmlSvg(source);
     return <img src={src} alt="PlantUML diagram" />;
 }

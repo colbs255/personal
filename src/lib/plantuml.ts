@@ -1,4 +1,4 @@
-import { spawn } from "child_process";
+import { spawnSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
@@ -14,7 +14,7 @@ function hashUmlCode(source: string) {
     return crypto.createHash("sha256").update(source).digest("hex");
 }
 
-export default async function generatePlantUmlSvg(source: string) {
+export default function generatePlantUmlSvg(source: string) {
     const hash = hashUmlCode(source);
     const outputFile = path.join(CACHE_DIR, `${hash}.svg`);
     const publicPath = `/diagrams/${hash}.svg`;
@@ -30,21 +30,21 @@ export default async function generatePlantUmlSvg(source: string) {
 
     // Call PlantUML
     const args = ["-tsvg", inputFile]; // Use plantuml from PATH
-    const proc = spawn("plantuml", args);
+    const result = spawnSync("plantuml", args);
 
-    await new Promise<void>((resolve, reject) => {
-        proc.on("close", (code) => {
-            fs.unlinkSync(inputFile); // Clean up temp input file
-            if (code !== 0) {
-                return reject(new Error(`PlantUML exited with code ${code}`));
-            }
-            resolve();
-        });
+    try {
+        fs.unlinkSync(inputFile);
+    } catch (err) {
+        console.warn("Failed to delete temp file:", inputFile, err);
+    }
 
-        proc.stderr.on("data", (data) => {
-            console.error("PlantUML stderr:", data.toString());
-        });
-    });
+    if (result.error) {
+        throw new Error(`Failed to run PlantUML: ${result.error.message}`);
+    }
+
+    if (result.status !== 0) {
+        throw new Error(`PlantUML exited with code ${result.status}: ${result.stderr}`);
+    }
 
     return publicPath;
 }
