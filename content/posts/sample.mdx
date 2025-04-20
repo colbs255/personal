@@ -36,3 +36,13 @@ record Test(int a, int b) {
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
     consequat.
 </Warning>
+
+<PlantUML source={`
+@startuml
+hide empty description
+[*] --> AssertState: assertThat
+AssertState --> [*]
+
+AssertState --> AssertState: contains / hasSizeGreaterThan / isLowerCase / asdfasdf / asdf / asdf / asdfasdf / asdfasdf / asdfasdf / asdfasdf
+@enduml
+`} />
