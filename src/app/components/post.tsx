@@ -3,6 +3,7 @@ import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
+import PlantUML from "./plantuml";
 
 type AdmonitionProps = {
     title?: string;
@@ -32,6 +33,7 @@ function Admonition(schema: AdmonitionSchema, props: AdmonitionProps) {
 
 function mdxComponents() {
     return {
+        PlantUML,
         Info: (props: AdmonitionProps) =>
             Admonition(
                 {
