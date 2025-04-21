@@ -1,8 +1,6 @@
-name: validated code
+name: Validate code
 
 on:
-    push:
-        branches: ["main"]
     pull_request:
 
 permissions:
