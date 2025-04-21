@@ -52,6 +52,15 @@ function mdxComponents() {
                 },
                 props,
             ),
+        Note: (props: AdmonitionProps) =>
+            Admonition(
+                {
+                    defaultTitle: "Note",
+                    titleColor: "bg-green-700",
+                    borderColor: "border-green-400",
+                },
+                props,
+            ),
     };
 }
 
