@@ -9,7 +9,7 @@ attributes := "\
     "
 
 build:
-    npm install
+    npm ci
     npx tsx src/script/slides.ts
     npm run build
 dev:
