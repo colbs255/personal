@@ -7,6 +7,7 @@ import PlantUML from "./plantuml";
 import Admonition, { AdmonitionProps } from "./admonition";
 
 function mdxComponents() {
+    const t = "";
     return {
         PlantUML,
         Info: (props: AdmonitionProps) =>
