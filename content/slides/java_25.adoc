@@ -3,6 +3,10 @@
 :publishedat: 2025-10-01
 :tags: java
 
+== Unfinished
+
+* This is just an outline for the java 25 presentation right now.
+
 == Java Releases
 
 * Java 21: September 2023 (**LTS**)
@@ -13,7 +17,14 @@
 
 == What's new?
 
-* Unnamed variables and patterns
+* Region Pinning for G1
 * Synchronize virtual threads without pinning
+* Unnamed variables and patterns
+* Foreign Function & Memory API
+* Markdown Documentation Comments
+* Module Import Declarations
+* Compact Source Files and Instance Main Methods
+
+== Synchronize Virtual Threads without Pinning
 
 == Questions
