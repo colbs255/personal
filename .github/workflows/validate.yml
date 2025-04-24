@@ -21,7 +21,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: '22'
-            - name: Install dependencies
-              run: sudo apt install -y just plantuml
+            - name: Install Nix
+              uses: nixbuild/nix-quick-install-action@v30
             - name: Build in nix shell
-              run: just
+              run: nix develop --command just

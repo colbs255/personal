@@ -14,10 +14,6 @@
       devShells = eachSystem (pkgs: {
         default = pkgs.mkShell {
           packages = [
-            pkgs.nodejs
-            pkgs.corepack
-            pkgs.nodePackages.typescript
-            pkgs.nodePackages.typescript-language-server
             pkgs.just
             pkgs.plantuml
           ];
