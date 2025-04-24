@@ -17,12 +17,11 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-
             - name: Set up Node.js and npm
               uses: actions/setup-node@v4
               with:
                 node-version: '22'
             - name: Install dependencies
-              uses: sudo apt install -y just plantuml
+              run: sudo apt install -y just plantuml
             - name: Build in nix shell
               run: just
