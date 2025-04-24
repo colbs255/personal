@@ -18,6 +18,6 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
             - name: Install Nix
-              uses: cachix/install-nix-action@v25
+              uses: nixbuild/nix-quick-install-action@v30
             - name: Build in nix shell
               run: nix develop --command just
