@@ -21,6 +21,8 @@ jobs:
               uses: nixbuild/nix-quick-install-action@v30
             - name: Install packages
               run: nix develop --command bash -c 'just install'
+            - name: Lint
+              run: nix develop --command bash -c 'just lint'
             - name: Test
               run: nix develop --command bash -c 'just test'
             - name: Build
