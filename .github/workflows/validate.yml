@@ -20,6 +20,6 @@ jobs:
             - name: Install Nix
               uses: nixbuild/nix-quick-install-action@v30
             - name: Test
-              run: nix develop --command bash -c 'just test'
+              run: nix develop --command bash -c 'just install test'
             - name: Build
               run: nix develop --command bash -c 'just build'
