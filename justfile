@@ -20,4 +20,4 @@ test:
 format:
     npx prettier . --write
 lint:
-    npm run lint
+    npx prettier . --check
