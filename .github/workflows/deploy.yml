@@ -28,8 +28,10 @@ jobs:
                   # Automatically inject basePath in your Next.js configuration file and disable
                   # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
                   static_site_generator: next
+            - name: Install packages
+              run: nix develop --command bash -c 'just install'
             - name: Build
-              run: nix develop --command bash -c 'just install build'
+              run: nix develop --command bash -c 'just build'
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
