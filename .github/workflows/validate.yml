@@ -19,5 +19,9 @@ jobs:
               uses: actions/checkout@v4
             - name: Install Nix
               uses: nixbuild/nix-quick-install-action@v30
-            - name: Build in nix shell
-              run: nix develop --command just
+            - name: Install packages
+              run: nix develop --command bash -c 'just install'
+            - name: Test
+              run: nix develop --command bash -c 'just test'
+            - name: Build
+              run: nix develop --command bash -c 'just build'

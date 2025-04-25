@@ -8,8 +8,9 @@ attributes := "\
     -a revealjsdir=reveal.js
     "
 
-build:
+install:
     npm ci
+build:
     npx tsx src/script/slides.ts
     npm run build
 dev:
