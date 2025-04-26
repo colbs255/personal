@@ -6,5 +6,9 @@ type PlantUMLProps = {
 
 export default function PlantUML({ source }: PlantUMLProps) {
     const src = generatePlantUmlSvg(source);
-    return <img src={src} alt="PlantUML diagram" />;
+    return (
+        <div className="flex justify-center">
+            <img src={src} className="justify-center" alt="PlantUML diagram" />
+        </div>
+    );
 }
