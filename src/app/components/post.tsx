@@ -1,7 +1,7 @@
 import { Doc } from "@/lib/types";
 import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
-import rehypeHighlight from "rehype-highlight";
+import rehypeShiki, { RehypeShikiOptions } from "@shikijs/rehype";
 import remarkGfm from "remark-gfm";
 import PlantUML from "./plantuml";
 import Admonition, { AdmonitionProps } from "./admonition";
@@ -39,11 +39,18 @@ function mdxComponents() {
     };
 }
 
+const shikiConfig: RehypeShikiOptions = {
+    themes: {
+        light: "catppuccin-latte",
+        dark: "tokyo-night",
+    },
+};
+
 export default async function Page(doc: Doc) {
     const { default: MDXContent } = await evaluate(doc.content, {
         ...runtime,
         remarkPlugins: [remarkGfm],
-        rehypePlugins: [rehypeHighlight],
+        rehypePlugins: [[rehypeShiki, shikiConfig]],
         useMDXComponents: mdxComponents,
     });
     return <MDXContent />;
