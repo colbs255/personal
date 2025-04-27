@@ -4,12 +4,12 @@ tags: git, software
 publishedAt: 2023-06-01
 ---
 
-TODO: worktrees png
+<img src="/guido-git-worktrees.png" alt="Guido van Rossum quote on worktrees" />
 
 Yep, even the creator of python did not know about git worktrees.
 Worktrees are not well known, but they are quite powerful.
 They allow you to checkout multiple branches independently,
-so you can work on one branch then seamlessly switch to another branch without clobbering the changes you have made in the current branch.
+so you can work on one branch then switch to another branch without clobbering the changes you have made in the current branch.
 
 ## What are they?
 
@@ -73,7 +73,7 @@ git worktree add ../hotfix
 This will create a new directory that looks like a normal git repo.
 If we run `git worktree list` again, we will see our new worktree:
 
-```
+``` txt
 > git worktree list
 /var/home/colby/scratch/test-repo  2bb7aa3 [main]
 /var/home/colby/scratch/hotfix     2bb7aa3 [hotfix]
@@ -94,9 +94,9 @@ cd ../hotfix
 You can make changes, commit, push, and even switch branches in this directory just like a normal repo!
 You can also navigate back to the main repo at anytime to make independent changes.
 
-<Note>
+<Info>
     Take a look at the `.git` file in your worktrees. Unlike what you would find in normal repos, it is a file that links to your original `.git` file.
-</Note>
+</Info>
 
 To remove a worktree, use the `worktree remove` command with the path to the worktree.
 
@@ -108,9 +108,9 @@ git worktree remove ../hotfix
 And that's all you need to know to get started with worktrees!
 To summarize, these are the most common commands you will use for git worktrees:
 
-- **git worktree list**: list worktrees
-- **git worktree add <worktree>**: add a worktree at the specified path
-- **git worktree remove <worktree>**: remove a worktree, deleting the directory it is stored in
+- `git worktree list`: list worktrees
+- `git worktree add <worktree>`: add a worktree at the specified path
+- `git worktree remove <worktree>`: remove a worktree, deleting the directory it is stored in
 
 ## worktree add variations
 
@@ -120,7 +120,7 @@ If the branch does not exist, it will create one off of the HEAD.
 The command has a few more arguments that makes it more flexible though.
 Here's the full version of the command:
 
-``` bash
+``` txt
 # Arguments in [] are optional
 git worktree add [-b <new-branch>] <path> [<branch>]
 ```
@@ -129,7 +129,7 @@ Let's break the command down:
 
 - **path**: The file path your worktree will be created in.
 - **branch**: The branch that will be checked out in your new worktree. If omitted, the checked out branch will come from the path.
-- **`-b new-branch`**: If included, a new branch will be created off of the checked out branch with this name.
+- **-b new-branch**: If included, a new branch will be created off of the checked out branch with this name.
 
 We can combine these arguments for different use cases:
 
@@ -143,7 +143,7 @@ Create a worktree (feature), checkout a branch that is different from the worktr
 git worktree add feature develop -b feature/create-user-interface
 ```
 
-## Best Practices
+## Recommendations
 
 This is where we get into the more opinionated part of the article.
 
@@ -169,7 +169,7 @@ git worktree add hotfix
 cd hotfix
 ```
 
-Now all your work is in one directory and you do not have to use the `..`.
+Now all your work is in one project directory.
 
 ### Use long-lived worktrees
 
