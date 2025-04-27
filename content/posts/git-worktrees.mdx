@@ -4,14 +4,14 @@ tags: git, software
 publishedAt: 2023-06-01
 ---
 
-> Why did I not know before about "git worktree"?  :-(
+> Why did I not know before about "git worktree"? :-(
 >
-> -- Guido van Rossum (tweet)
+> — Guido van Rossum (tweet)
 
 Yep, even the creator of python did not know about git worktrees.
 Worktrees are not well known, but they are quite powerful.
 They allow you to checkout multiple branches independently,
-so you can work on one branch then switch to another branch without clobbering the changes you have made in the current branch.
+so you can work on one branch then switch to another without clobbering the changes you have made in the current branch.
 
 ## What are they?
 
@@ -46,7 +46,7 @@ Let's walk through a worktrees example.
 
 First, create a new git repo:
 
-``` bash
+```bash
 mkdir test-repo
 cd test-repo
 git init
@@ -54,13 +54,13 @@ git init
 
 Initializing a repo like this actually also creates a worktree. You can list worktrees with:
 
-``` bash
+```bash
 git worktree list
 ```
 
 Let's add a file to our new repo and commit it:
 
-``` bash
+```bash
 touch test.txt
 git add .
 git commit -m "first"
@@ -68,28 +68,29 @@ git commit -m "first"
 
 Let's create a new worktree for a hotfix:
 
-``` bash
+```bash
 git worktree add ../hotfix
 ```
 
 This will create a new directory that looks like a normal git repo.
 If we run `git worktree list` again, we will see our new worktree:
 
-``` txt
+```txt
 > git worktree list
 /var/home/colby/scratch/test-repo  2bb7aa3 [main]
 /var/home/colby/scratch/hotfix     2bb7aa3 [hotfix]
 ```
 
 <Warning>
-    A branch can only be checked out in one worktree.
-    For example, if you check out `main` in one worktree, an error like "fatal: 'main' is already checked out at..." will occur.
-    You can create a new branch off of main and check it out in a new worktree though.
+    A branch can only be checked out in one worktree. For example, if you check
+    out `main` in one worktree, an error like "fatal: 'main' is already checked
+    out at..." will occur. You can create a new branch off of main and check it
+    out in a new worktree though.
 </Warning>
 
 Let's navigate to our new worktree:
 
-``` bash
+```bash
 cd ../hotfix
 ```
 
@@ -97,12 +98,13 @@ You can make changes, commit, push, and even switch branches in this directory j
 You can also navigate back to the main repo at anytime to make independent changes.
 
 <Info>
-    Take a look at the `.git` file in your worktrees. Unlike what you would find in normal repos, it is a file that links to your original `.git` file.
+    Take a look at the `.git` file in your worktrees. Unlike what you would find
+    in normal clones, it is a file that links to your original `.git` file.
 </Info>
 
 To remove a worktree, use the `worktree remove` command with the path to the worktree.
 
-``` bash
+```bash
 cd ../test-repo
 git worktree remove ../hotfix
 ```
@@ -122,7 +124,7 @@ If the branch does not exist, it will create one off of the HEAD.
 The command has a few more arguments that makes it more flexible though.
 Here's the full version of the command:
 
-``` txt
+```txt
 # Arguments in [] are optional
 git worktree add [-b <new-branch>] <path> [<branch>]
 ```
@@ -135,15 +137,16 @@ Let's break the command down:
 
 We can combine these arguments for different use cases:
 
-Create a worktree (feature) and checkout a branch that is different from the worktree name (feature/create-user-interface)
-``` bash
-git worktree add feature feature/create-user-interface
-```
+- Create a worktree (feature) and checkout a branch that is different from the worktree name (feature/create-user-interface)
 
-Create a worktree (feature), checkout a branch that is different from the worktree name (develop), and create a new branch on top of that branch (feature/create-user-interface)
-``` bash
-git worktree add feature develop -b feature/create-user-interface
-```
+    ```bash
+    git worktree add feature feature/create-user-interface
+    ```
+
+- Create a worktree (feature), checkout a branch that is different from the worktree name (develop), and create a new branch on top of that branch (feature/create-user-interface)
+    ```bash
+    git worktree add feature develop -b feature/create-user-interface
+    ```
 
 ## Recommendations
 
@@ -155,7 +158,7 @@ When going over `worktree add`, we used paths like this `../branch`.
 This works but it clutters up the parent directory of your git project.
 Some recommend creating a parent folder and storing all your worktrees in there like this:
 
-``` bash
+```bash
 mkdir ../myrepo-worktrees
 git worktree add ../myrepo-worktrees/hotfix
 cd ../hotfix
@@ -164,7 +167,7 @@ cd ../hotfix
 I'm not a fan of this either because you now have 2 separate folders for the same project.
 I recommend cloning your project as a bare repo and then creating your worktrees inside the bare repo like this:
 
-``` bash
+```bash
 git clone myrepo --bare
 cd myrepo
 git worktree add hotfix
