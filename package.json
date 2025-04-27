@@ -10,17 +10,17 @@
         "test": "jest"
     },
     "dependencies": {
-        "@asciidoctor/reveal.js": "^5.2.0",
         "@mdx-js/mdx": "^3.1.0",
-        "asciidoctor": "^3.0.4",
         "geist": "^1.3.1",
         "next": "~15.2.4",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
-        "remark-gfm": "^4.0.1",
-        "tsx": "^4.19.3"
+        "remark-gfm": "^4.0.1"
     },
     "devDependencies": {
+        "@asciidoctor/reveal.js": "^5.2.0",
+        "asciidoctor": "^3.0.4",
+        "tsx": "^4.19.3",
         "@eslint/eslintrc": "^3",
         "@shikijs/rehype": "^3.3.0",
         "@tailwindcss/postcss": "^4",
