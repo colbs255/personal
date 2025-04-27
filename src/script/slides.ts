@@ -30,6 +30,7 @@ const attributes = [
     "source-highlighter=highlightjs",
     "table-caption!",
     "revealjs_margin=.05",
+    "revealjs_hash=true",
     "revealjs_height=800",
     "revealjs_width=1000",
     "revealjsdir=reveal.js",
