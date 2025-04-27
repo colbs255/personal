@@ -38,6 +38,12 @@ html {
     @apply visible;
 }
 
+.prose blockquote {
+    @apply border-l-4 border-teal-500 pl-4 my-4 py-0.5;
+    @apply text-slate-600 bg-gray-100;
+    @apply dark:text-indigo-300 dark:bg-gray-900;
+}
+
 .prose a {
     @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
 }
