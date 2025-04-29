@@ -9,15 +9,15 @@ attributes := "\
     "
 
 install:
-    npm ci
+    bun install --frozen-lockfile
 build:
-    npx tsx src/script/slides.ts
-    npm run build
+    bun src/script/slides.ts
+    bun run build
 dev:
-    npm run dev
+    bun run dev
 test:
-    npm test
+    bun test
 format:
-    npx prettier . --write
+    bunx prettier . --write
 lint:
-    npx prettier . --check
+    bunx prettier . --check
