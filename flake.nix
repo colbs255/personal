@@ -15,7 +15,6 @@
         default = pkgs.mkShell {
           packages = [
             pkgs.bun
-            pkgs.nodePackages.typescript
             pkgs.nodePackages.typescript-language-server
             pkgs.just
             pkgs.plantuml
