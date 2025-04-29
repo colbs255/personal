@@ -12,7 +12,7 @@ install:
     bun install --frozen-lockfile
 build:
     bun src/script/slides.ts
-    bun build
+    bun run build
 dev:
     bun run dev
 test:
