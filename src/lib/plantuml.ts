@@ -29,7 +29,8 @@ export default function generatePlantUmlSvg(source: string) {
     fs.writeFileSync(inputFile, source);
 
     // Call PlantUML
-    const args = ["-tsvg", inputFile]; // Use plantuml from PATH
+    const args = ["-tsvg", inputFile, "-theme", "cyborg" ]; // Use plantuml from PATH
+    console.info(`Generating plantuml diagram: ${publicPath}`);
     const result = spawnSync("plantuml", args);
 
     try {
