@@ -5,10 +5,15 @@ import rehypeShiki, { RehypeShikiOptions } from "@shikijs/rehype";
 import remarkGfm from "remark-gfm";
 import PlantUML from "./plantuml";
 import Admonition, { AdmonitionProps } from "./admonition";
+import generatePlantUmlSvg from "@/lib/plantuml";
+
+type PlantUMLProps = {
+    source: string;
+}
 
 function mdxComponents() {
     return {
-        PlantUML,
+        PlantUML: ({ source }: PlantUMLProps) => <PlantUML path={generatePlantUmlSvg(source)} />,
         Info: (props: AdmonitionProps) =>
             Admonition(
                 {

@@ -2,6 +2,7 @@ import { spawnSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import crypto from "crypto";
+import { DiagramPath } from "./types";
 
 const CACHE_DIR = path.resolve("./public/diagrams");
 
@@ -14,11 +15,6 @@ function hashUmlCode(source: string) {
     return crypto.createHash("sha256").update(source).digest("hex");
 }
 
-type DiagramPath = {
-    dark: string;
-    light: string;
-}
-
 export default function generatePlantUmlSvg(source: string): DiagramPath {
     const hash = hashUmlCode(source);
     // Write temp input file
@@ -27,11 +23,11 @@ export default function generatePlantUmlSvg(source: string): DiagramPath {
     fs.writeFileSync(inputFile, source);
 
     // Call PlantUML
-    const outputFile = path.join(CACHE_DIR, hash);
-    const darkResult = spawnSync("plantuml", ["-tsvg", inputFile, "-theme", "cyborg", "-o", "dark"]);
-    const lightResults = spawnSync("plantuml", ["-tsvg", inputFile, "-o", "light"]);
+    spawnSync("plantuml", ["-tsvg", inputFile, "-theme", "cyborg", "-o", "dark"]);
+    spawnSync("plantuml", ["-tsvg", inputFile, "-o", "light"]);
 
     return {
+        hash,
         dark: `/diagrams/${hash}/dark/diagram.svg`,
         light: `/diagrams/${hash}/light/diagram.svg`,
     }
