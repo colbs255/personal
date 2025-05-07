@@ -15,3 +15,9 @@ export type LocalDate = {
     day: number;
     year: number;
 };
+
+export type DiagramPath = {
+    hash: string;
+    dark: string;
+    light: string;
+};
