@@ -1,4 +1,3 @@
-"use client";
 import { DiagramPath } from "@/lib/types";
 
 type PlantUMLProps = {
