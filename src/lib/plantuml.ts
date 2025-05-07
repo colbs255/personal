@@ -22,42 +22,35 @@ export default function generatePlantUmlSvg(source: string): DiagramPath {
     const inputFile = path.join(CACHE_DIR, hash, "diagram.uml");
     fs.writeFileSync(inputFile, source);
 
-    // Call PlantUML
-    spawnSync("plantuml", ["-tsvg", inputFile, "-theme", "cyborg", "-o", "dark"]);
-    spawnSync("plantuml", ["-tsvg", inputFile, "-o", "light"]);
+    const generate = (theme: string, name: string) => {
+        // Plantuml creates diagrams in same directory as input file
+        // Specifying an '-o' will cause it to create the file in a subfolder
+        const result = spawnSync("plantuml", [
+            "-tsvg",
+            inputFile,
+            "-theme",
+            theme,
+            "-o",
+            name,
+        ]);
+
+        if (result.error) {
+            throw new Error(`Failed to run PlantUML: ${result.error.message}`);
+        }
+
+        if (result.stderr && result.stderr.toString().trim()) {
+            throw new Error(
+                `PlantUML stderr: ${result.stderr.toString().trim()}`,
+            );
+        }
+    };
+
+    generate("cyborg", "dark");
+    generate("materia", "light");
 
     return {
         hash,
         dark: `/diagrams/${hash}/dark/diagram.svg`,
         light: `/diagrams/${hash}/light/diagram.svg`,
-    }
-
-    // // If it exists, return the public path
-    // if (fs.existsSync(outputFile)) {
-    //     return publicPath;
-    // }
-    //
-    // // Write temp input file
-    // const inputFile = path.join(CACHE_DIR, `${hash}.uml`);
-    // fs.writeFileSync(inputFile, source);
-    //
-    // // Call PlantUML
-    // const args = ["-tsvg", inputFile]; // Use plantuml from PATH
-    // const result = spawnSync("plantuml", args);
-    //
-    // try {
-    //     fs.unlinkSync(inputFile);
-    // } catch (err) {
-    //     console.warn("Failed to delete temp file:", inputFile, err);
-    // }
-    //
-    // if (result.error) {
-    //     throw new Error(`Failed to run PlantUML: ${result.error.message}`);
-    // }
-    //
-    // if (result.stderr && result.stderr.toString().trim()) {
-    //     throw new Error(`PlantUML stderr: ${result.stderr.toString().trim()}`);
-    // }
-    //
-    // return publicPath;
+    };
 }

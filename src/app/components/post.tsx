@@ -9,11 +9,13 @@ import generatePlantUmlSvg from "@/lib/plantuml";
 
 type PlantUMLProps = {
     source: string;
-}
+};
 
 function mdxComponents() {
     return {
-        PlantUML: ({ source }: PlantUMLProps) => <PlantUML path={generatePlantUmlSvg(source)} />,
+        PlantUML: ({ source }: PlantUMLProps) => (
+            <PlantUML path={generatePlantUmlSvg(source)} />
+        ),
         Info: (props: AdmonitionProps) =>
             Admonition(
                 {
