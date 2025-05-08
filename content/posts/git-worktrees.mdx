@@ -73,7 +73,7 @@ git worktree add ../hotfix
 ```
 
 This will create a new directory that looks like a normal git repo.
-If we run `git worktree list` again, we will see our new worktree:
+If we run `git worktree list{:txt}` again, we will see our new worktree:
 
 ```txt
 > git worktree list
@@ -83,7 +83,7 @@ If we run `git worktree list` again, we will see our new worktree:
 
 <Warning>
     A branch can only be checked out in one worktree. For example, if you check
-    out `main` in one worktree, an error like "fatal: 'main' is already checked
+    out `main{:txt}` in one worktree, an error like "fatal: 'main' is already checked
     out at..." will occur. You can create a new branch off of main and check it
     out in a new worktree though.
 </Warning>
@@ -98,11 +98,11 @@ You can make changes, commit, push, and even switch branches in this directory j
 You can also navigate back to the main repo at anytime to make independent changes.
 
 <Info>
-    Take a look at the `.git` file in your worktrees. Unlike what you would find
-    in normal clones, it is a file that links to your original `.git` file.
+    Take a look at the `.git{:txt}` file in your worktrees. Unlike what you would find
+    in normal clones, it is a file that links to your original `.git{:txt}` file.
 </Info>
 
-To remove a worktree, use the `worktree remove` command with the path to the worktree.
+To remove a worktree, use the `worktree remove{:txt}` command with the path to the worktree.
 
 ```bash
 cd ../test-repo
@@ -112,14 +112,14 @@ git worktree remove ../hotfix
 And that's all you need to know to get started with worktrees!
 To summarize, these are the most common commands you will use for git worktrees:
 
-- `git worktree list`: list worktrees
-- `git worktree add <worktree>`: add a worktree at the specified path
-- `git worktree remove <worktree>`: remove a worktree, deleting the directory it is stored in
+- `git worktree list{:txt}`: list worktrees
+- `git worktree add <worktree>{:txt}`: add a worktree at the specified path
+- `git worktree remove <worktree>{:txt}`: remove a worktree, deleting the directory it is stored in
 
 ## worktree add variations
 
-The `git worktree add <path>` example used above is the simplest form of the command.
-It creates a new worktree at `path` and checks out the branch with that same name.
+The `git worktree add <path>{:txt}` example used above is the simplest form of the command.
+It creates a new worktree at `path{:txt}` and checks out the branch with that same name.
 If the branch does not exist, it will create one off of the HEAD.
 The command has a few more arguments that makes it more flexible though.
 Here's the full version of the command:
@@ -154,7 +154,7 @@ This is where we get into the more opinionated part of the article.
 
 ### Use worktrees with bare git repos
 
-When going over `worktree add`, we used paths like this `../branch`.
+When going over `worktree add{:txt}`, we used paths like this `../branch{:txt}`.
 This works but it clutters up the parent directory of your git project.
 Some recommend creating a parent folder and storing all your worktrees in there like this:
 
@@ -178,9 +178,9 @@ Now all your work is in one project directory.
 
 ### Use long-lived worktrees
 
-I recommend having a long-lived worktree for only your `main` branch.
+I recommend having a long-lived worktree for only your `main{:txt}` branch.
 This allows you to quickly check the latest state of your repo.
-Depending on your git setup, you may want other long-lived worktrees like `develop` or `release`.
+Depending on your git setup, you may want other long-lived worktrees like `develop{:txt}` or `release{:txt}`.
 
 ### Create a worktree for each task
 

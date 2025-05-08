@@ -56,10 +56,10 @@ Once you model the states and transitions, creating a fluent interface is straig
 Let's implement the fluent interface for the assertJ example.
 The following methods need to be implemented:
 
-- `assertThat`
-- `hasSizeGreaterThan`
-- `isLowerCase`
-- `contains`
+- `assertThat{:java}`
+- `hasSizeGreaterThan{:java}`
+- `isLowerCase{:java}`
+- `contains{:java}`
 
 Each method moves from one state to another state, meaning methods are the transitions of the state machine.
 The first step is drawing the state machine:
@@ -75,8 +75,8 @@ AssertState --> AssertState: contains \\n hasSizeGreaterThan \\n isLowercase
 `} />
 
 This state machine is pretty simple because any of these methods can be called from the same state, so only one state is needed.
-The `AssertState` state can be modeled as an interface, with each method representing a transition.
-Here's the interface for the `AssertState`:
+The `AssertState{:java}` state can be modeled as an interface, with each method representing a transition.
+Here's the interface for the `AssertState{:java}`:
 
 ```java
 interface AssertState {
@@ -132,7 +132,7 @@ class StringAsserter implements AssertState {
 }
 ```
 
-That's the hard part! Let's finish this wih a nice `assertThat` method for the client:
+That's the hard part! Let's finish this wih a nice `assertThat{:java}` method for the client:
 
 ```java
 class CustomAssertions {
@@ -143,8 +143,8 @@ class CustomAssertions {
 ```
 
 <Note>
-    The return type of the method is the interface `AssertState` NOT the
-    implementation `StringAsserter`. You do not want to expose your
+    The return type of the method is the interface `AssertState{:java}` NOT the
+    implementation `StringAsserter{:java}`. You do not want to expose your
     implementation to the client.
 </Note>
 
@@ -213,9 +213,9 @@ OrderByState --> [*]: build
 Now we create our interfaces from the table values.
 For each row in the table:
 
-- `Current State` is the interface
-- `Transition` is a method on the interface
-- `Output State` is the return type of the method
+- `Current State{:txt}` is the interface
+- `Transition{:txt}` is a method on the interface
+- `Output State{:txt}` is the return type of the method
 
 ```java
 interface StartState {
@@ -273,7 +273,7 @@ class QueryBuilder implements StartState, SelectState, FromState, WhereState, Or
 
 Then we implement the interface methods.
 Notice how the implementation is very similar to the builder pattern.
-The main difference is each method returns a different type (the next state) instead of the same `QueryBuilder`.
+The main difference is each method returns a different type (the next state) instead of the same `QueryBuilder{:java}`.
 
 ```java
 class QueryBuilder implements StartState, SelectState, FromState, WhereState, OrderByState {
@@ -340,8 +340,8 @@ Here are the steps for creating a fluent interface:
     1. Each state is an interface.
     1. Each transition is a method, where the current state is the interface the transition belongs to and the next state is the return type of the method.
 1. Create a class with all the fields you need.
-1. Implement all your interfaces in your class. Each method mutates something in your class and then returns `this`.
-    1. Each method can return a different interface, but `this` can be returned because it implements all of the interfaces.
+1. Implement all your interfaces in your class. Each method mutates something in your class and then returns `this{:java}`.
+    1. Each method can return a different interface, but `this{:java}` can be returned because it implements all of the interfaces.
 
 ## When should you use fluent interfaces?
 
