@@ -18,7 +18,7 @@ atomicity.
 ### Memory Visibility
 
 The program below starts a thread that waits for the main thread to set
-the `stopRequested` variable to true.
+the `stopRequested{:java}` variable to true.
 
 ```java
 import java.util.concurrent.TimeUnit;
@@ -43,7 +43,7 @@ class Example {
 ```
 
 If you run it, it probably will not terminate; the background thread
-will always think `stopRequested` is false and continue to loop. Why?
+will always think `stopRequested{:java}` is false and continue to loop. Why?
 The java memory model does not guarantee that writes on a variable in
 one thread will appear in another thread. In other words, memory
 modifications are not always **visible** to other threads.
@@ -57,7 +57,7 @@ int x = 1;
 x++;
 ```
 
-While `x++` is one line of code, it is actually several instructions:
+While `x++{:java}` is one line of code, it is actually several instructions:
 
 1.  Load value for x
 
@@ -65,7 +65,7 @@ While `x++` is one line of code, it is actually several instructions:
 
 3.  Store the new value
 
-Consider 2 threads `a` and `b` running this line simultaneously:
+Consider 2 threads `a{:java}` and `b{:java}` running this line simultaneously:
 
 1.  Thread a loads the current value of x: 1
 
@@ -96,7 +96,7 @@ Volatile variables address the memory visibility problem: they tell Java
 to always grab the latest value from the memory cache that is shared
 between threads. In other words, when a thread writes to a variable, a
 thread that later reads the value is guaranteed to see the latest value.
-This means volatile variables fix the loop example but not the `x++`
+This means volatile variables fix the loop example but not the `x++{:java}`
 example.
 
 ### Synchronized
@@ -109,9 +109,9 @@ less performant than volatile variables due to locking.
 
 ### Atomic
 
-Atomic variables have volatile semantics with `get` and `set` but also
+Atomic variables have volatile semantics with `get{:java}` and `set{:java}` but also
 solve the atomicity problem via compare and set (CAS) operations
-(`compareAndSet` method). Unlike synchronized blocks, they are
+(`compareAndSet{:java}` method). Unlike synchronized blocks, they are
 non-blocking, resulting in better performance than synchronized blocks
 in _most_ cases.
 
