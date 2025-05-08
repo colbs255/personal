@@ -68,7 +68,7 @@ html {
 }
 
 .prose code {
-    @apply px-1 py-0.5
+    @apply px-1 py-0.5;
 }
 
 .prose pre code {
