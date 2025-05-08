@@ -47,6 +47,7 @@ function mdxComponents() {
 }
 
 const shikiConfig: RehypeShikiOptions = {
+    inline: "tailing-curly-colon",
     themes: {
         light: "catppuccin-latte",
         dark: "tokyo-night",
