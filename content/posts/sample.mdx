@@ -1,10 +1,17 @@
 ---
 title: Sample
 tags: engineering, fun
-publishedAt: 2025-04-01
+publishedAt: 2022-01-01
 ---
 
 Lorem **ipsum** _dolor_ `sit{:java}` amet, `class Test {}{:java}`consectetur `class Test {}{:txt}`adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+- a
+    - a1
+    - a2
+- b
+    - b1
+    - b2
 
 ## Example H2
 
@@ -26,9 +33,9 @@ record Test(int a, int b) {
 | February | $80     |
 | March    | $420    |
 
-<Info title="Example title">
-    Lorem ipsum dolor sit amet, consectetur adipiscing.
-</Info>
+<Note>Example note.</Note>
+
+<Info title="Example title">Example info.</Info>
 
 <Warning>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -43,6 +50,6 @@ hide empty description
 [*] --> AssertState: assertThat
 AssertState --> [*]
 
-AssertState --> AssertState: contains / hasSizeGreaterThan / isLowerCase / asdfasdf / asdf / asdf / asdfasdf / asdfasdf / asdfasdf / asdfasdf
+AssertState --> AssertState: contains
 @enduml
 `} />
