@@ -72,7 +72,7 @@ html {
 }
 
 .prose pre code {
-    border: initial;
+    @apply p-0 border-0;
     line-height: 1.5;
 }
 
