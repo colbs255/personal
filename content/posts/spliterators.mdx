@@ -1,0 +1,165 @@
+---
+title: Spliterators
+tags: java
+publishedAt: 2025-04-09
+---
+
+<Warning>This is a rough, early draft.</Warning>
+
+Like Iterators, Spliterators let you traverse elements of a data source, but they're easier to reason about, and can be converted to streams.
+This article introduces Spliterators and their advantages over Iterators.
+
+## What is an Iterator?
+
+Let's walk through iterators first, since that will help with understanding Spliterators.
+An iterator is a built-in Java interface with methods for traversing elements of a collection.
+
+- `boolean hasNext(){:java}` returns `true{:java}` if there are more elements to iterate over
+- `T next(){:java}` returns the next element in the iteration
+- `void remove(){:java}` removes the last element returned by the iterator
+
+Consider this example that prints the elements of a list:
+
+```java
+var numbers = List.of(1, 2, 3);
+for (int i = 0; i < numbers.size(); i++) {
+    System.out.println(numbers.get(i));
+}
+```
+
+This works, but what if you want to do the same for a `Set{:java}`? Sets do not have a get by index method like a list, so how do you iterate through its elements? Yes, an iterator!
+
+```java
+var numbers = Set.of(1, 2, 3);
+for (Iterator<Integer> iterator = numbers.iterator(); iterator.hasNext();) {
+    int number = iterator.next();
+    System.out.println(number);
+}
+```
+
+Hooray! You can now traverse arbitrary collections using the same lines of code.
+But this comes at a cost—the approach is verbose and includes a lot of boilerplate just to iterate over a collection.
+The Java language designers must have agreed, because they introduced a simpler alternative: the for-each loop.
+
+```java
+var numbers = Set.of(1, 2, 3);
+for (int number: numbers) {
+    System.out.println(number);
+}
+```
+
+Yes, the beloved for-each loop is just a nice way of using an iterator.
+
+## How do Spliterators differ from Iterators?
+
+Spliterators and Iterators both allow you traverse through something, but they have some differences. Spliterators:
+
+- Include a few extra methods that allow the Spliterator to be split for parallel operations:
+    - `int characteristics(){:java}`
+    - `long estimateSize(){:java}`
+    - `Spliterator<T> trySplit(){:java}`
+- Merge `T next(){:java}` and `boolean hasNext(){:java}` into `boolean tryAdvance(Consumer<? super T> action){:java}`
+- Do not have a `E remove(){:java}` method
+
+We will go into more detail on these methods in the next section.
+
+## How do I make a Spliterator?
+
+Let's make a Spliterator for lists. Here's our class with the fields that we need:
+
+```java
+public class ListSpliterator<T> implements Spliterator<T> {
+    private final List<T> list; // the backing list
+    private int current; // the current index, modified on advance/split
+    private final int end; // one past the last index
+
+    public ListSpliterator(List<T> list, int start, int end) {
+        this.list = list;
+        this.current = start;
+        this.end = end;
+    }
+
+    public ListSpliterator(List<T> list) {
+        this(list, 0, list.size());
+    }
+}
+```
+
+Now we implement the most important method `boolean tryAdvance(Consumer<? super T> action){:java}`.
+If a remaining element exists, this method performs the given action on it and returns true; otherwise, it returns false.
+In my opinion, combining `hasNext{:java}` and `next{:java}` into a single method makes iteration easier to reason about, since all the state is managed in one place.
+
+```java
+@Override
+public boolean tryAdvance(Consumer<? super T> action) {
+    if (current >= end) {
+        // We are at the end
+        return false;
+    }
+    // Apply the action to our next element
+    action.accept(list.get(current));
+    // Increment current for the next call
+    current += 1;
+    // Return true to let the caller know the action was performed
+    return true;
+}
+```
+
+The `trySplit{:java}` method enables parallel processing by splitting up the Spliterator into smaller chunks.
+This method attempts to split off a portion of the elements for parallel processing and returns a new Spliterator covering those elements.
+If successful, it returns a new Spliterator covering a portion of the elements, while the original continues with the rest. If the data set is too small to split or can't be split further, it returns null.
+
+```java
+@Override
+public Spliterator<T> trySplit() {
+    int remaining = end - current;
+    if (remaining <= 1) {
+        // We can't split, so return null
+        return null;
+    }
+
+    int mid = current + remaining / 2;
+    // Spliterator is ordered, so the returned split
+    // must cover a strict prefix of the elements
+    Spliterator<T> split = new ListSpliterator<>(list, current, mid);
+    // The current Spliterator needs to cover the elements
+    // after the split that we are returning
+    current = mid;
+    return split;
+}
+```
+
+The `estimateSize{:java}` method returns an estimate of the number of remaining elements.
+If the size is infinite, unknown, or too expensive to compute, the method should return `Long.MAX_VALUE{:java}`.
+It's pretty straightforward in our example:
+
+```java
+@Override
+public long estimateSize() {
+    return end - current;
+}
+```
+
+The `characteristics{:java}` method returns a set of flags that describe the behavior of the Spliterator.
+These flags help the Stream API optimize processing—especially in parallel streams.
+You return them as a bitwise OR of constants like `ORDERED{:java}`, `SIZED{:java}`, or `IMMUTABLE{:java}` from the Spliterator interface.
+It's important that these characteristics are correct, since incorrect flags can lead to bugs or inefficient stream processing.
+Here's how that looks in our example:
+
+```java
+@Override
+public int characteristics() {
+    return ORDERED | SIZED | SUBSIZED;
+}
+```
+
+## How do I create a stream from a Spliterator?
+
+Now that you've created a Spliterator, we can convert it into a Stream to reap the benefits of Java Streams.
+It's quite straightforward using `StreamSupport{:java}`:
+
+```java
+List<String> items = List.of("a", "b", "c", "d", "e");
+Spliterator<String> spliterator = new ListSpliterator<>(items);
+Stream<String> stream = StreamSupport.stream(spliterator, /* parallel */ false);
+```
