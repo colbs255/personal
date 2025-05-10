@@ -57,13 +57,50 @@ Spliterators and Iterators both allow you traverse through something, but they h
 - Include a few extra methods that allow the Spliterator to be split for parallel operations:
     - `int characteristics(){:java}`
     - `long estimateSize(){:java}`
+    - `Spliterator<T> trySplit(){:java}`
 - Merge `T next(){:java}` and `boolean hasNext(){:java}` into `boolean tryAdvance(Consumer<? super T> action){:java}`
 - Do not have a `E remove(){:java}` method
 
 ## How do I make a Spliterator?
 
-Let's make a Spliterator for an array list
-TODO
+Let's make a Spliterator for an array list. Here's our basic class with the fields that we need:
+
+```java
+public class ArrayListSpliterator<T> implements Spliterator<T> {
+    private final ArrayList<T> list; // the backing ArrayList
+    private int current; // the current index, modified on advance/split
+    private final int end; // one past the last index
+
+    public ArrayListSpliterator(ArrayList<T> list, int start, int end) {
+        this.list = list;
+        this.current = start;
+        this.end = end;
+    }
+
+    public ArrayListSpliterator(ArrayList<T> list) {
+        this(list, 0, list.size());
+    }
+}
+```
+
+Now we implement the most important method `boolean tryAdvance(Consumer<? super T> action){:java}`.
+If a remaining element exists, the given action will be performed on it, returning true; else returns false.
+
+```java
+@Override
+public boolean tryAdvance(Consumer<? super T> action) {
+    if (current >= end) {
+        // We are at the end
+        return false;
+    }
+    // Apply the action to our next element
+    action.accept(list.get(current));
+    // Increment current for the next call and return true to
+    // let the caller know the action was performed
+    current += 1;
+    return true;
+}
+```
 
 ## How do I create a stream from a Spliterator?
 
