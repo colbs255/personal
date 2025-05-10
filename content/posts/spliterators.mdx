@@ -11,8 +11,8 @@ This article introduces Spliterators and their advantages over Iterators.
 
 ## What is an Iterator?
 
-Let's walk through iterators first since it will help with understanding Spliterators.
-An iterator is a built in java interface with methods for traversing through elements of something:
+Let's walk through iterators first, since that will help with understanding Spliterators.
+An iterator is a built-in Java interface with methods for traversing elements of a collection.
 
 - `boolean hasNext(){:java}` returns `true{:java}` if there are more elements to iterate over
 - `T next(){:java}` returns the next element in the iteration
@@ -61,6 +61,8 @@ Spliterators and Iterators both allow you traverse through something, but they h
 - Merge `T next(){:java}` and `boolean hasNext(){:java}` into `boolean tryAdvance(Consumer<? super T> action){:java}`
 - Do not have a `E remove(){:java}` method
 
+We will go into more detail on these methods in the next section.
+
 ## How do I make a Spliterator?
 
 Let's make a Spliterator for lists. Here's our class with the fields that we need:
@@ -84,7 +86,7 @@ public class ListSpliterator<T> implements Spliterator<T> {
 ```
 
 Now we implement the most important method `boolean tryAdvance(Consumer<? super T> action){:java}`.
-If a remaining element exists, the given action will be performed on it, returning true; else returns false.
+If a remaining element exists, this method performs the given action on it and returns true; otherwise, it returns false.
 
 ```java
 @Override
@@ -102,15 +104,15 @@ public boolean tryAdvance(Consumer<? super T> action) {
 }
 ```
 
+In my opinion, combining `hasNext{:java}` and `next{:java}` into a single method makes iteration easier to reason about, since all the state is managed in one place.
+
 ## How do I create a stream from a Spliterator?
 
-This is the easiest part of the article, let's say you have a Spliterator for integers, you can convert it to a stream with `StreamSupport{:java}`:
+Now that you've created a Spliterator, we can convert it into a Stream to reap the benefits the benefits of Java Streams.
+It's quite straightforward using `StreamSupport{:java}`:
 
 ```java
-Spliterator<Integer> yourSpliterator = List.of(1, 2, 3).spliterator();
-Stream<Integer> yourStream = StreamSupport.stream(yourSpliterator, true);
-yourStream
-        .filter(v -> v % 2 == 1)
-        .count();
-
+List<String> items = List.of("a", "b", "c", "d", "e");
+Spliterator<String> spliterator = new ListSpliterator<>(items);
+Stream<String> stream = StreamSupport.stream(spliterator, /* parallel */ false);
 ```
