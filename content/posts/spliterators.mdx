@@ -2,7 +2,9 @@
 title: Spliterators
 tags: java
 publishedAt: 2025-04-09
---- <Warning>This is a rough, early draft.</Warning>
+---
+
+<Warning>This is a rough, early draft.</Warning>
 
 Like Iterators, Spliterators let you traverse elements of a data source, but they're easier to implement, and can be converted to streams.
 This article introduces Spliterators and their advantages over Iterators.
@@ -104,7 +106,18 @@ public boolean tryAdvance(Consumer<? super T> action) {
 ```
 
 TODO: trySplit
-TODO: estimateSize
+
+The next method is `estimateSize{:java}` which returns an estimate of the number of remaining elements.
+If the size is infinite, unknown, or too expensive to compute, the method should return `Long.MAX_VALUE{:java}`.
+It's pretty straightforward in our example:
+
+```java
+@Override
+public long estimateSize() {
+    return end - current;
+}
+```
+
 TODO: characteristics
 
 ## How do I create a stream from a Spliterator?
