@@ -6,7 +6,7 @@ publishedAt: 2025-04-09
 
 <Warning>This is a rough, early draft.</Warning>
 
-Like Iterators, Spliterators let you traverse elements of a data source, but they're easier to implement, and can be converted to streams.
+Like Iterators, Spliterators let you traverse elements of a data source, but they're easier to reason about, and can be converted to streams.
 This article introduces Spliterators and their advantages over Iterators.
 
 ## What is an Iterator?
@@ -143,7 +143,7 @@ public long estimateSize() {
 The `characteristics{:java}` method returns a set of flags that describe the behavior of the Spliterator.
 These flags help the Stream API optimize processing—especially in parallel streams.
 You return them as a bitwise OR of constants like `ORDERED{:java}`, `SIZED{:java}`, or `IMMUTABLE{:java}` from the Spliterator interface.
-It's important that these characteristics are correct, since incorrect flags can lead to bugs or inefficient stream processing
+It's important that these characteristics are correct, since incorrect flags can lead to bugs or inefficient stream processing.
 Here's how that looks in our example:
 
 ```java
@@ -155,7 +155,7 @@ public int characteristics() {
 
 ## How do I create a stream from a Spliterator?
 
-Now that you've created a Spliterator, we can convert it into a Stream to reap the benefits the benefits of Java Streams.
+Now that you've created a Spliterator, we can convert it into a Stream to reap the benefits of Java Streams.
 It's quite straightforward using `StreamSupport{:java}`:
 
 ```java
