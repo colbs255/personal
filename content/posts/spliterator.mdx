@@ -6,14 +6,18 @@ publishedAt: 2025-04-09
 
 <Warning>This is a rough, early draft.</Warning>
 
-Like Iterators, Spliterators allow you to traverse through elements of a source.
-They are often easier to implement than iterators and can be converted to streams.
-This article will introduce you to Spliterators and the benefits they have over Iterators.
+Like Iterators, Spliterators let you traverse elements of a data source, but they're easier to implement, and can be converted to streams.
+This article introduces Spliterators and their advantages over Iterators.
 
 ## What is an Iterator?
 
 Let's walk through iterators first since it will help with understanding Spliterators.
-An iterator is a built in java interface with methods for traversing through elements of something.
+An iterator is a built in java interface with methods for traversing through elements of something:
+
+- `boolean hasNext(){:java}` returns `true{:java}` if there are more elements to iterate over
+- `T next(){:java}` returns the next element in the iteration
+- `void remove(){:java}` removes the last element returned by the iterator
+
 Consider this example that prints the elements of a list:
 
 ```java
