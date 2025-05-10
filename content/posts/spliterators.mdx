@@ -2,9 +2,7 @@
 title: Spliterators
 tags: java
 publishedAt: 2025-04-09
----
-
-<Warning>This is a rough, early draft.</Warning>
+--- <Warning>This is a rough, early draft.</Warning>
 
 Like Iterators, Spliterators let you traverse elements of a data source, but they're easier to implement, and can be converted to streams.
 This article introduces Spliterators and their advantages over Iterators.
@@ -87,6 +85,7 @@ public class ListSpliterator<T> implements Spliterator<T> {
 
 Now we implement the most important method `boolean tryAdvance(Consumer<? super T> action){:java}`.
 If a remaining element exists, this method performs the given action on it and returns true; otherwise, it returns false.
+In my opinion, combining `hasNext{:java}` and `next{:java}` into a single method makes iteration easier to reason about, since all the state is managed in one place.
 
 ```java
 @Override
@@ -97,14 +96,16 @@ public boolean tryAdvance(Consumer<? super T> action) {
     }
     // Apply the action to our next element
     action.accept(list.get(current));
-    // Increment current for the next call and return true to
-    // let the caller know the action was performed
+    // Increment current for the next call
     current += 1;
+    // Return true to let the caller know the action was performed
     return true;
 }
 ```
 
-In my opinion, combining `hasNext{:java}` and `next{:java}` into a single method makes iteration easier to reason about, since all the state is managed in one place.
+TODO: trySplit
+TODO: estimateSize
+TODO: characteristics
 
 ## How do I create a stream from a Spliterator?
 
