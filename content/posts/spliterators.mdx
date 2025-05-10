@@ -63,21 +63,21 @@ Spliterators and Iterators both allow you traverse through something, but they h
 
 ## How do I make a Spliterator?
 
-Let's make a Spliterator for an array list. Here's our basic class with the fields that we need:
+Let's make a Spliterator for lists. Here's our class with the fields that we need:
 
 ```java
-public class ArrayListSpliterator<T> implements Spliterator<T> {
-    private final ArrayList<T> list; // the backing ArrayList
+public class ListSpliterator<T> implements Spliterator<T> {
+    private final List<T> list; // the backing list
     private int current; // the current index, modified on advance/split
     private final int end; // one past the last index
 
-    public ArrayListSpliterator(ArrayList<T> list, int start, int end) {
+    public ListSpliterator(List<T> list, int start, int end) {
         this.list = list;
         this.current = start;
         this.end = end;
     }
 
-    public ArrayListSpliterator(ArrayList<T> list) {
+    public ListSpliterator(List<T> list) {
         this(list, 0, list.size());
     }
 }
