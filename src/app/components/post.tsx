@@ -6,12 +6,14 @@ import remarkGfm from "remark-gfm";
 import PlantUML from "./plantuml";
 import Admonition, { AdmonitionProps } from "./admonition";
 import generatePlantUmlSvg from "@/lib/plantuml";
+import { Info, Pencil, TriangleAlert } from "lucide-react";
 
 type PlantUMLProps = {
     source: string;
 };
 
 function mdxComponents() {
+    const iconSize = 18;
     return {
         PlantUML: ({ source }: PlantUMLProps) => (
             <PlantUML path={generatePlantUmlSvg(source)} />
@@ -22,6 +24,7 @@ function mdxComponents() {
                     defaultTitle: "Note",
                     titleColor: "bg-[#448aff]/15",
                     borderColor: "border-[#448aff]",
+                    icon: <Pencil size={iconSize} color="#448aff"/>,
                 },
                 props,
             ),
@@ -31,6 +34,7 @@ function mdxComponents() {
                     defaultTitle: "Info",
                     titleColor: "bg-[#00b8d4]/15",
                     borderColor: "border-[#00b8d4]",
+                    icon: <Info size={iconSize} color="#00b8d4"/>,
                 },
                 props,
             ),
@@ -40,6 +44,7 @@ function mdxComponents() {
                     defaultTitle: "Warning",
                     titleColor: "bg-[#ff9100]/15",
                     borderColor: "border-[#ff9100]",
+                    icon: <TriangleAlert size={iconSize} color="#ff9100"/>,
                 },
                 props,
             ),
