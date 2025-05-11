@@ -81,12 +81,12 @@ If we run `git worktree list{:txt}` again, we will see our new worktree:
 /var/home/colby/scratch/hotfix     2bb7aa3 [hotfix]
 ```
 
-<Warning>
+<Warning>{`
     A branch can only be checked out in one worktree. For example, if you check
-    out `main{:txt}` in one worktree, an error like "fatal: 'main' is already checked
+    out 'main' in one worktree, an error like "fatal: 'main' is already checked
     out at..." will occur. You can create a new branch off of main and check it
     out in a new worktree though.
-</Warning>
+`}</Warning>
 
 Let's navigate to our new worktree:
 
@@ -96,12 +96,6 @@ cd ../hotfix
 
 You can make changes, commit, push, and even switch branches in this directory just like a normal repo!
 You can also navigate back to the main repo at anytime to make independent changes.
-
-<Info>
-    Take a look at the `.git{:txt}` file in your worktrees. Unlike what you would find
-    in normal clones, it is a file that links to your original `.git{:txt}` file.
-</Info>
-
 To remove a worktree, use the `worktree remove{:txt}` command with the path to the worktree.
 
 ```bash

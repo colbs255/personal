@@ -22,7 +22,7 @@ export default function Admonition(
             >
                 {props.title ?? schema.defaultTitle}
             </div>
-            <div className="px-3">{props.children}</div>
+            <div className="p-3">{props.children}</div>
         </div>
     );
 }

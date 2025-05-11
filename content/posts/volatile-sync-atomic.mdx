@@ -115,7 +115,7 @@ solve the atomicity problem via compare and set (CAS) operations
 non-blocking, resulting in better performance than synchronized blocks
 in _most_ cases.
 
-<Info title="What is CAS?">
+<Info title="What is CAS?">{`
     CAS is a form of non-locking synchronization. It is an atomic instruction
     that checks the current value and only applies the new value if the current
     value equals the expected value. CAS is generally more performant than
@@ -124,7 +124,7 @@ in _most_ cases.
     algorithms with CAS is more difficult than using a standard lock. They are
     actually less performant when contention is **very** high, but still faster
     in most real world cases.
-</Info>
+`}</Info>
 
 ## Summary
 
