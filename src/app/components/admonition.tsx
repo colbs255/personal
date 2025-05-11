@@ -18,7 +18,7 @@ export default function Admonition(
             className={`border-2 ${schema.borderColor} rounded-lg overflow-hidden shadow-sm mb-2`}
         >
             <div
-                className={`${schema.titleColor} text-white font-semibold px-4 py-2 text-sm`}
+                className={`${schema.titleColor} text-black dark:text-white font-semibold px-4 py-2 text-sm`}
             >
                 {props.title ?? schema.defaultTitle}
             </div>

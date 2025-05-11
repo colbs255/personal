@@ -16,12 +16,21 @@ function mdxComponents() {
         PlantUML: ({ source }: PlantUMLProps) => (
             <PlantUML path={generatePlantUmlSvg(source)} />
         ),
+        Note: (props: AdmonitionProps) =>
+            Admonition(
+                {
+                    defaultTitle: "Note",
+                    titleColor: "bg-[#448aff]/15",
+                    borderColor: "border-[#448aff]",
+                },
+                props,
+            ),
         Info: (props: AdmonitionProps) =>
             Admonition(
                 {
                     defaultTitle: "Info",
-                    titleColor: "bg-blue-700",
-                    borderColor: "border-blue-400",
+                    titleColor: "bg-[#00b8d4]/15",
+                    borderColor: "border-[#00b8d4]",
                 },
                 props,
             ),
@@ -29,17 +38,8 @@ function mdxComponents() {
             Admonition(
                 {
                     defaultTitle: "Warning",
-                    titleColor: "bg-yellow-700",
-                    borderColor: "border-yellow-400",
-                },
-                props,
-            ),
-        Note: (props: AdmonitionProps) =>
-            Admonition(
-                {
-                    defaultTitle: "Note",
-                    titleColor: "bg-green-700",
-                    borderColor: "border-green-400",
+                    titleColor: "bg-[#ff9100]/15",
+                    borderColor: "border-[#ff9100]",
                 },
                 props,
             ),
