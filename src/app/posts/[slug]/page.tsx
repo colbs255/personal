@@ -4,6 +4,7 @@ import { Doc } from "@/lib/types";
 import { formatLocalDate } from "@/lib/util";
 import { getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
+import Head from 'next/head'
 
 type Params = {
     slug: string;
@@ -11,6 +12,17 @@ type Params = {
 
 export function generateStaticParams(): Params[] {
     return getPosts().map((doc) => ({ slug: doc.meta.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<Params> }) {
+  // read route params
+  const { slug } = await params
+ 
+    const doc: Doc = getPosts().find((doc) => doc.meta.slug === slug) as Doc;
+ 
+  return {
+    title: doc.meta.title
+  };
 }
 
 export default async function Page({ params }: { params: Promise<Params> }) {
@@ -22,6 +34,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
     return (
         <section>
+            <Head>
+                <title>{`${doc.meta.title} | Colby Chance`}</title>
+            </Head>
             <Title>{doc.meta.title}</Title>
             <div className="flex justify-between items-center mt-2 mb-8 text-sm">
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">
