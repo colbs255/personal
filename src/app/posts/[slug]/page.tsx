@@ -9,8 +9,16 @@ type Params = {
     slug: string;
 };
 
+let postsCache: Doc[] | null = null;
+function posts() {
+    if (postsCache === null) {
+        postsCache = getPosts();
+    }
+    return postsCache;
+}
+
 export function generateStaticParams(): Params[] {
-    return getPosts().map((doc) => ({ slug: doc.meta.slug }));
+    return posts().map((doc) => ({ slug: doc.meta.slug }));
 }
 
 export async function generateMetadata({
@@ -19,7 +27,7 @@ export async function generateMetadata({
     params: Promise<Params>;
 }) {
     const { slug } = await params;
-    const doc: Doc = getPosts().find((doc) => doc.meta.slug === slug) as Doc;
+    const doc: Doc = posts().find((doc) => doc.meta.slug === slug) as Doc;
     return {
         title: formatPageTitle(doc.meta.title),
     };
@@ -27,7 +35,7 @@ export async function generateMetadata({
 
 export default async function Page({ params }: { params: Promise<Params> }) {
     const { slug } = await params;
-    const doc: Doc = getPosts().find((doc) => doc.meta.slug === slug) as Doc;
+    const doc: Doc = posts().find((doc) => doc.meta.slug === slug) as Doc;
     if (!doc) {
         notFound();
     }
