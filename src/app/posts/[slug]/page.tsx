@@ -37,9 +37,6 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
     return (
         <section>
-            <Head>
-                <title>{`${doc.meta.title} | Colby Chance`}</title>
-            </Head>
             <Title>{doc.meta.title}</Title>
             <div className="flex justify-between items-center mt-2 mb-8 text-sm">
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">

@@ -4,9 +4,9 @@ import Grid, { Item } from "../components/grid";
 import { Metadata } from "@/lib/types";
 import { compareLocalDate, formatPageTitle } from "@/lib/util";
 import Title from "../components/title";
-import { Metadata as NextMetada } from "next";
+import { Metadata as NextMetadata } from "next";
 
-export const metadata: NextMetada = {
+export const metadata: NextMetadata = {
     title: formatPageTitle("Slides"),
 };
 
