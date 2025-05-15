@@ -2,8 +2,13 @@ import fs from "fs";
 import path from "path";
 import Grid, { Item } from "../components/grid";
 import { Metadata } from "@/lib/types";
-import { compareLocalDate } from "@/lib/util";
+import { compareLocalDate, formatPageTitle } from "@/lib/util";
 import Title from "../components/title";
+import { Metadata as NextMetadata } from "next";
+
+export const metadata: NextMetadata = {
+    title: formatPageTitle("Slides"),
+};
 
 export default function Page() {
     const filePath = path.join(process.cwd(), "public", "slides", "index.json");

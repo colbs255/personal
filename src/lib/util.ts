@@ -14,6 +14,10 @@ export function formatLocalDate(date: LocalDate): string {
     return `${date.year}-${month}-${day}`;
 }
 
+export function formatPageTitle(s: string) {
+    return `${s} | Colby Chance`;
+}
+
 export function compareLocalDate(a: LocalDate, b: LocalDate): number {
     if (a.year !== b.year) return a.year - b.year;
     if (a.month !== b.month) return a.month - b.month;

@@ -1,7 +1,12 @@
 import Grid, { Item } from "../components/grid";
-import { compareLocalDate } from "@/lib/util";
+import { compareLocalDate, formatPageTitle } from "@/lib/util";
 import Title from "../components/title";
 import { getPosts } from "@/lib/posts";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: formatPageTitle("Posts"),
+};
 
 export default function Page() {
     const posts = getPosts();
