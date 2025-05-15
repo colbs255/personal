@@ -18,11 +18,8 @@ export async function generateMetadata({
 }: {
     params: Promise<Params>;
 }) {
-    // read route params
     const { slug } = await params;
-
     const doc: Doc = getPosts().find((doc) => doc.meta.slug === slug) as Doc;
-
     return {
         title: formatPageTitle(doc.meta.title),
     };
