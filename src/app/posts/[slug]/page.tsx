@@ -4,7 +4,6 @@ import { Doc } from "@/lib/types";
 import { formatLocalDate, formatPageTitle } from "@/lib/util";
 import { getPosts } from "@/lib/posts";
 import { notFound } from "next/navigation";
-import Head from 'next/head'
 
 type Params = {
     slug: string;
@@ -14,9 +13,13 @@ export function generateStaticParams(): Params[] {
     return getPosts().map((doc) => ({ slug: doc.meta.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<Params> }) {
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<Params>;
+}) {
     // read route params
-    const { slug } = await params
+    const { slug } = await params;
 
     const doc: Doc = getPosts().find((doc) => doc.meta.slug === slug) as Doc;
 
