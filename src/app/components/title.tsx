@@ -10,7 +10,7 @@ export default function Title(props: TitleProps) {
         <div className="mb-8">
             <h1>{props.children}</h1>
             {props.subheading && (
-                <p className="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+                <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">
                     {props.subheading}
                 </p>
             )}
