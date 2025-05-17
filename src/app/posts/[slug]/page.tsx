@@ -34,12 +34,9 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 
     return (
         <section>
-            <Title>{doc.meta.title}</Title>
-            <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    {formatLocalDate(doc.meta.publishedAt)}
-                </p>
-            </div>
+            <Title subheading={formatLocalDate(doc.meta.publishedAt)}>
+                {doc.meta.title}
+            </Title>
             <article className="prose">
                 <Post {...doc} />
             </article>
