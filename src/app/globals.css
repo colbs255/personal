@@ -92,7 +92,7 @@ span.shiki {
 }
 
 h1 {
-    @apply text-3xl font-light tracking-tighter mb-8;
+    @apply text-3xl font-light tracking-tighter;
 }
 
 .prose h2 {
