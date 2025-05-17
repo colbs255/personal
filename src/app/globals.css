@@ -39,7 +39,7 @@ html {
 }
 
 .prose blockquote {
-    @apply border-l-4 border-teal-500 pl-4 my-4 py-0.5;
+    @apply border-l-4 border-teal-500 pl-4 mb-2 py-0.5;
     @apply text-slate-600 bg-gray-100;
     @apply dark:text-indigo-300 dark:bg-gray-900;
 }
@@ -59,7 +59,7 @@ html {
 
 /* Code blocks */
 pre.shiki {
-    @apply rounded-lg overflow-x-auto py-2 px-3 text-sm;
+    @apply rounded-lg overflow-x-auto py-2 px-3 text-sm mb-2;
     @apply border border-neutral-200 dark:border-neutral-900;
 }
 
@@ -88,7 +88,7 @@ span.shiki {
 }
 
 .prose p {
-    @apply my-4 text-neutral-800 dark:text-neutral-200;
+    @apply mb-2 text-neutral-800 dark:text-neutral-200;
 }
 
 h1 {
@@ -112,11 +112,11 @@ h1 {
 }
 
 .prose ul {
-    @apply list-disc pl-8;
+    @apply list-disc pl-8 mb-2;
 }
 
 .prose ol {
-    @apply list-decimal pl-8;
+    @apply list-decimal pl-8 mb-2;
 }
 
 .prose > :first-child {
