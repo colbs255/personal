@@ -6,7 +6,7 @@ type PlantUMLProps = {
 
 export default function PlantUML({ path }: PlantUMLProps) {
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-2">
             <img
                 src={path.light}
                 className="justify-center dark:hidden"
