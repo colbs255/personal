@@ -9,9 +9,29 @@ export function parseLocalDate(s: string): LocalDate {
 }
 
 export function formatLocalDate(date: LocalDate): string {
-    const month = String(date.month).padStart(2, "0");
-    const day = String(date.day).padStart(2, "0");
-    return `${date.year}-${month}-${day}`;
+    const { month, day, year } = date;
+
+    const MONTH_NAMES = [
+        "",
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ];
+
+    if (month < 1 || month > 12) {
+        throw new Error(`Invalid month: ${month}`);
+    }
+
+    return `${MONTH_NAMES[month]} ${day}, ${year}`;
 }
 
 export function formatPageTitle(s: string) {
