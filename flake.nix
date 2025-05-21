@@ -17,7 +17,7 @@
             pkgs.bun
             pkgs.nodePackages.typescript-language-server
             pkgs.just
-            pkgs.jre
+            pkgs.temurin-bin
           ];
         };
       });
