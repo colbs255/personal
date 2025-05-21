@@ -9,6 +9,7 @@ attributes := "\
     "
 
 install:
+    curl -L https://github.com/plantuml/plantuml/releases/download/v1.2025.2/plantuml-gplv2-1.2025.2.jar -o plantuml.jar
     bun install --frozen-lockfile
 build:
     bun src/script/slides.ts
