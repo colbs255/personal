@@ -17,6 +17,10 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+            - name: Increase Nix download buffer
+              run: |
+                mkdir -p ~/.config/nix
+                echo "download-buffer-size = 10485760" >> ~/.config/nix/nix.conf
             - name: Install Nix
               uses: nixbuild/nix-quick-install-action@v30
             - name: Install packages
