@@ -9,7 +9,7 @@ attributes := "\
     "
 
 install:
-    bun install --frozen-lockfile
+    bun install --frozen-lockfile --no-progress
 build:
     bun src/script/slides.ts
     bun run build
