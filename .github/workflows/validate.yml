@@ -20,7 +20,7 @@ jobs:
             - name: Increase Nix download buffer
               run: |
                 mkdir -p ~/.config/nix
-                echo "download-buffer-size = 10485760" >> ~/.config/nix/nix.conf
+                echo "download-buffer-size = 500000000" >> ~/.config/nix/nix.conf
             - name: Install Nix
               uses: nixbuild/nix-quick-install-action@v30
             - name: Install packages
