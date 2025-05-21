@@ -9,7 +9,7 @@ attributes := "\
     "
 
 install:
-    bun install --frozen-lockfile --network-concurrency 96
+    bun install --frozen-lockfile --network-concurrency 1
 build:
     bun src/script/slides.ts
     bun run build
