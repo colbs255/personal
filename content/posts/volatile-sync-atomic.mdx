@@ -59,25 +59,18 @@ x++;
 
 While `x++{:java}` is one line of code, it is actually several instructions:
 
-1.  Load value for x
-
-2.  Increment the value by 1
-
-3.  Store the new value
+1. Load value for x
+2. Increment the value by 1
+3. Store the new value
 
 Consider 2 threads `a{:java}` and `b{:java}` running this line simultaneously:
 
-1.  Thread a loads the current value of x: 1
-
-2.  Thread b loads the current value of x: 1
-
-3.  Thread a increments the value 2
-
-4.  Thread b increments the value 2
-
-5.  Thread a stores 2 into x
-
-6.  Thread b stores 2 into x
+1. Thread a loads the current value of x: 1
+2. Thread b loads the current value of x: 1
+3. Thread a increments the value 2
+4. Thread b increments the value 2
+5. Thread a stores 2 into x
+6. Thread b stores 2 into x
 
 Two increment operations are performed, but the final value is only
 incremented by 1, clearly that is wrong. This shows how operations (even
@@ -122,7 +115,7 @@ in _most_ cases.
     traditional locks because it does not actually lock or reschedule threads on
     the CPU. Like everything else, CAS comes with trade-offs. Designing
     algorithms with CAS is more difficult than using a standard lock. They are
-    actually less performant when contention is **very** high, but still faster
+    actually less performant when contention is high, but still faster
     in most real world cases.
 `}</Info>
 
