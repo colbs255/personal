@@ -21,10 +21,5 @@
           ];
         };
       });
-
-      # overlays.default = final: prev: {
-      #   jdk = prev.temurin-bin;
-      #   graphviz = null;
-      # };
     };
 }
