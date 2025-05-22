@@ -26,6 +26,7 @@ export default function generatePlantUmlSvg(source: string): DiagramPath {
         // Plantuml creates diagrams in same directory as input file
         // Specifying an '-o' will cause it to create the file in a subfolder
         const result = spawnSync("plantuml", [
+            "-Playout=smetana",
             "-tsvg",
             inputFile,
             "-theme",
