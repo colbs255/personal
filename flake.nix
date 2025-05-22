@@ -17,9 +17,13 @@
             pkgs.bun
             pkgs.nodePackages.typescript-language-server
             pkgs.just
-            pkgs.temurin-bin
           ];
         };
       });
+
+      overlays.default = final: prev: {
+        jdk = prev.temurin-bin;
+        graphviz = null;
+      };
     };
 }
