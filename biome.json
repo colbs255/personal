@@ -36,9 +36,7 @@
             "semicolons": "always",
             "arrowParentheses": "always",
             "bracketSameLine": false,
-            "quoteStyle": "double",
-            "attributePosition": "auto",
-            "bracketSpacing": true
+            "quoteStyle": "double"
         }
     }
 }
