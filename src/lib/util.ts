@@ -73,14 +73,14 @@ export function parseDoc(fileContent: string): Doc {
         }
         result[key] = value;
     });
-    if (!result.title || !result.tags || !result.publishedAt) {
+    if (!result["title"] || !result["tags"] || !result["publishedAt"]) {
         throw new Error("Doc must have title, tags, and publishedAt");
     }
     const meta: Metadata = {
-        title: result.title,
-        slug: slugify(result.title),
-        tags: result.tags.split(", "),
-        publishedAt: parseLocalDate(result.publishedAt),
+        title: result["title"],
+        slug: slugify(result["title"]),
+        tags: result["tags"].split(", "),
+        publishedAt: parseLocalDate(result["publishedAt"]),
     };
     return { meta, content };
 }
