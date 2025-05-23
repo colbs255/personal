@@ -45,7 +45,7 @@ fs.readdirSync(slidesDir).forEach((f) => {
         attributes: attributes,
     });
     const title = doc.getTitle() ?? "unknown";
-    const slug = slugify(title) + ".html";
+    const slug = `${slugify(title)}.html`;
     const publishedAt = parseLocalDate(doc.getAttribute("publishedat"));
     const tags: string[] = doc.getAttribute("tags", "").split(", ");
     records.push({ title, slug, publishedAt, tags });

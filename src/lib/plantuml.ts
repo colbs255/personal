@@ -39,7 +39,7 @@ export default function generatePlantUmlSvg(source: string): DiagramPath {
             throw new Error(`Failed to run PlantUML: ${result.error.message}`);
         }
 
-        if (result.stderr && result.stderr.toString().trim()) {
+        if (result.stderr?.toString().trim()) {
             throw new Error(
                 `PlantUML stderr: ${result.stderr.toString().trim()}`,
             );
