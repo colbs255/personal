@@ -20,7 +20,6 @@
     },
     "devDependencies": {
         "@asciidoctor/reveal.js": "^5.2.0",
-        "@eslint/eslintrc": "^3",
         "@shikijs/rehype": "^3.3.0",
         "@tailwindcss/postcss": "^4",
         "@types/jest": "^29.5.14",
@@ -28,8 +27,6 @@
         "@types/react": "^19",
         "@types/react-dom": "^19",
         "asciidoctor": "^3.0.4",
-        "eslint": "^9",
-        "eslint-config-next": "15.2.2",
         "prettier": "3.5.3",
         "tailwindcss": "^4",
         "ts-jest": "^29.3.1",
