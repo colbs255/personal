@@ -4,7 +4,7 @@ import * as reveal from "@asciidoctor/reveal.js";
 import fs from "fs";
 import path from "path";
 import { parseLocalDate, slugify } from "@/lib/util";
-import { Metadata } from "@/lib/types";
+import type { Metadata } from "@/lib/types";
 
 const root = process.cwd();
 const slidesDir = path.join(root, "content", "slides");

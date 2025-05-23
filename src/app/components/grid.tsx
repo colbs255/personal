@@ -1,4 +1,4 @@
-import { LocalDate } from "@/lib/types";
+import type { LocalDate } from "@/lib/types";
 import { formatLocalDate } from "@/lib/util";
 import Link from "next/link";
 

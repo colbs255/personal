@@ -1,10 +1,10 @@
-import { Doc } from "@/lib/types";
+import type { Doc } from "@/lib/types";
 import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
-import rehypeShiki, { RehypeShikiOptions } from "@shikijs/rehype";
+import rehypeShiki, { type RehypeShikiOptions } from "@shikijs/rehype";
 import remarkGfm from "remark-gfm";
 import PlantUML from "./plantuml";
-import Admonition, { AdmonitionProps } from "./admonition";
+import Admonition, { type AdmonitionProps } from "./admonition";
 import generatePlantUmlSvg from "@/lib/plantuml";
 import { Info, Pencil, TriangleAlert } from "lucide-react";
 

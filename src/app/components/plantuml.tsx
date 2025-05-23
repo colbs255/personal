@@ -1,4 +1,4 @@
-import { DiagramPath } from "@/lib/types";
+import type { DiagramPath } from "@/lib/types";
 
 type PlantUMLProps = {
     path: DiagramPath;
