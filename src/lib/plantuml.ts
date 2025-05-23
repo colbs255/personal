@@ -1,8 +1,8 @@
 import { spawnSync } from "child_process";
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
-import crypto from "crypto";
-import { DiagramPath } from "./types";
+import type { DiagramPath } from "./types";
 
 const CACHE_DIR = path.resolve("./public/diagrams");
 
@@ -39,7 +39,7 @@ export default function generatePlantUmlSvg(source: string): DiagramPath {
             throw new Error(`Failed to run PlantUML: ${result.error.message}`);
         }
 
-        if (result.stderr && result.stderr.toString().trim()) {
+        if (result.stderr?.toString().trim()) {
             throw new Error(
                 `PlantUML stderr: ${result.stderr.toString().trim()}`,
             );

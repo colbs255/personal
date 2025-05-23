@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Title from "./components/title";
 
 const name = "/Colby/Chance";
@@ -59,7 +59,7 @@ export default function Home() {
                     break;
                 }
                 default: {
-                    throw new Error(`Unhandled state`);
+                    throw new Error("Unhandled state");
                 }
             }
         }, 100);
@@ -69,7 +69,9 @@ export default function Home() {
         <div>
             <Title>{displayedText}</Title>
             <p className="mb-4">
-                {`Hi! This is my personal site where I host my posts and slides.`}
+                {
+                    "Hi! This is my personal site where I host my posts and slides."
+                }
             </p>
         </div>
     );

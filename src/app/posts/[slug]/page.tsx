@@ -1,8 +1,8 @@
 import Post from "@/app/components/post";
 import Title from "@/app/components/title";
-import { Doc } from "@/lib/types";
-import { formatLocalDate, formatPageTitle } from "@/lib/util";
 import { getPosts } from "@/lib/posts";
+import type { Doc } from "@/lib/types";
+import { formatLocalDate, formatPageTitle } from "@/lib/util";
 import { notFound } from "next/navigation";
 
 type Params = {

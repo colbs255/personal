@@ -1,4 +1,4 @@
-import { Doc } from "@/lib/types";
+import type { Doc } from "@/lib/types";
 import { parseDoc } from "@/lib/util";
 
 test("parseDoc", () => {

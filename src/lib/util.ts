@@ -1,4 +1,4 @@
-import { Doc, Metadata, LocalDate } from "./types";
+import type { Doc, LocalDate, Metadata } from "./types";
 
 export function parseLocalDate(s: string): LocalDate {
     const [year, month, day] = s.split("-").map(Number);

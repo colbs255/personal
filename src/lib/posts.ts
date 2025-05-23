@@ -1,6 +1,6 @@
-import path from "path";
 import fs from "fs";
-import { Doc } from "@/lib/types";
+import path from "path";
+import type { Doc } from "@/lib/types";
 import { parseDoc } from "@/lib/util";
 
 export function getPosts(): Doc[] {

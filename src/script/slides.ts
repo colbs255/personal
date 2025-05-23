@@ -1,10 +1,10 @@
-import Asciidoctor from "asciidoctor";
-// @ts-expect-error: lib does not have ts types and I can't figure out how to make ts happy
-import * as reveal from "@asciidoctor/reveal.js";
 import fs from "fs";
 import path from "path";
+import type { Metadata } from "@/lib/types";
 import { parseLocalDate, slugify } from "@/lib/util";
-import { Metadata } from "@/lib/types";
+// @ts-expect-error: lib does not have ts types and I can't figure out how to make ts happy
+import * as reveal from "@asciidoctor/reveal.js";
+import Asciidoctor from "asciidoctor";
 
 const root = process.cwd();
 const slidesDir = path.join(root, "content", "slides");
@@ -45,7 +45,7 @@ fs.readdirSync(slidesDir).forEach((f) => {
         attributes: attributes,
     });
     const title = doc.getTitle() ?? "unknown";
-    const slug = slugify(title) + ".html";
+    const slug = `${slugify(title)}.html`;
     const publishedAt = parseLocalDate(doc.getAttribute("publishedat"));
     const tags: string[] = doc.getAttribute("tags", "").split(", ");
     records.push({ title, slug, publishedAt, tags });
