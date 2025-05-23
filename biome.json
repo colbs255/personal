@@ -21,6 +21,9 @@
             "recommended": true,
             "style": {
                 "useNodejsImportProtocol": "off"
+            },
+            "complexity": {
+                "noForEach": "off"
             }
         }
     },
