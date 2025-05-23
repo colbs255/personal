@@ -1,9 +1,9 @@
 import "./globals.css";
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { Navbar } from "./components/navbar";
+import { GeistSans } from "geist/font/sans";
+import type { Metadata } from "next";
 import Footer from "./components/footer";
+import { Navbar } from "./components/navbar";
 
 export const metadata: Metadata = {
     title: "Colby Chance",

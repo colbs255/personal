@@ -1,10 +1,10 @@
 import fs from "fs";
 import path from "path";
-import Grid, { type Item } from "../components/grid";
 import type { Metadata } from "@/lib/types";
 import { compareLocalDate, formatPageTitle } from "@/lib/util";
-import Title from "../components/title";
 import type { Metadata as NextMetadata } from "next";
+import Grid, { type Item } from "../components/grid";
+import Title from "../components/title";
 
 export const metadata: NextMetadata = {
     title: formatPageTitle("Slides"),

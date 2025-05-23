@@ -18,6 +18,6 @@ dev:
 test:
     bun test
 format:
-    bunx prettier . --write
+    biome check --write
 lint:
-    bunx prettier . --check
+    biome ci

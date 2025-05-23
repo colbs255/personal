@@ -1,8 +1,8 @@
-import Grid, { type Item } from "../components/grid";
-import { compareLocalDate, formatPageTitle } from "@/lib/util";
-import Title from "../components/title";
 import { getPosts } from "@/lib/posts";
+import { compareLocalDate, formatPageTitle } from "@/lib/util";
 import type { Metadata } from "next";
+import Grid, { type Item } from "../components/grid";
+import Title from "../components/title";
 
 export const metadata: Metadata = {
     title: formatPageTitle("Posts"),

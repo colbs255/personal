@@ -1,7 +1,7 @@
 import { spawnSync } from "child_process";
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
-import crypto from "crypto";
 import type { DiagramPath } from "./types";
 
 const CACHE_DIR = path.resolve("./public/diagrams");
