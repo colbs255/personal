@@ -15,7 +15,15 @@
         "ignore": ["**/public/", "**/slides/", "**/package-lock.json"]
     },
     "organizeImports": { "enabled": true },
-    "linter": { "enabled": true, "rules": { "recommended": true } },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "style": {
+                "useNodejsImportProtocol": "off"
+            }
+        }
+    },
     "javascript": {
         "formatter": {
             "jsxQuoteStyle": "double",
