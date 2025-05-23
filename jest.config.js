@@ -2,7 +2,7 @@
 // Writing this in typescript requires ts-node...
 module.exports = {
     transform: {
-        "^.+\.tsx?$": ["ts-jest", {}],
+        "^.+.tsx?$": ["ts-jest", {}],
     },
     moduleNameMapper: {
         "@/(.*)": "<rootDir>/src/$1",
