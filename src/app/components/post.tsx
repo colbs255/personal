@@ -15,8 +15,8 @@ type PlantUMLProps = {
 function mdxComponents() {
     const iconSize = 18;
     return {
-        PlantUML: ({ source }: PlantUMLProps) => (
-            <PlantUML path={generatePlantUmlSvg(source)} />
+        PlantUML: async ({ source }: PlantUMLProps) => (
+            <PlantUML path={await generatePlantUmlSvg(source)} />
         ),
         Note: (props: AdmonitionProps) =>
             Admonition(
