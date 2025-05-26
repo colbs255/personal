@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-    --animate-slideUp: slideUp 0.6s;
+    --animate-enter: enter 0.6s;
 
-    @keyframes slideUp {
+    @keyframes enter {
         0% {
             opacity: 0;
             transform: translateY(10px);
