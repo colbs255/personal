@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
             <Title subheading={formatLocalDate(doc.meta.publishedAt)}>
                 {doc.meta.title}
             </Title>
-            <article className="prose motion-safe:animate-slideUp">
+            <article className="prose motion-safe:animate-enter">
                 <Post {...doc} />l
             </article>
         </section>

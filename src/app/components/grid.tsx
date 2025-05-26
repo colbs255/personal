@@ -10,13 +10,18 @@ export interface Item {
 }
 
 interface Props {
+    className?: string;
     items: Item[];
     openInNewTab?: boolean;
 }
 
-export default function Grid({ items, openInNewTab = false }: Props) {
+export default function Grid({
+    className = "",
+    items,
+    openInNewTab = false,
+}: Props) {
     return (
-        <div>
+        <div className={className}>
             {items.map((item) => (
                 <Link
                     key={item.name}
