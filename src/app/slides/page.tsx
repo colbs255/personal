@@ -26,7 +26,11 @@ export default function Page() {
     return (
         <div>
             <Title>Slides</Title>
-            <Grid className="animate-enter" items={items} openInNewTab={true} />
+            <Grid
+                className="motion-safe:animate-enter"
+                items={items}
+                openInNewTab={true}
+            />
         </div>
     );
 }

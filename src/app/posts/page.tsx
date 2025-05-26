@@ -22,7 +22,7 @@ export default function Page() {
     return (
         <div>
             <Title>Posts</Title>
-            <Grid className="animate-enter" items={items} />
+            <Grid className="motion-safe:animate-enter" items={items} />
         </div>
     );
 }
