@@ -33,35 +33,15 @@ export default async function Page({ params }: { params: Promise<Params> }) {
     }
 
     return (
-        <>
-            <style>
-            {`
-                @keyframes slide-up {
-                  0% {
-                    opacity: 0;
-                    transform: translateY(10px);
-                  }
-
-                  to {
-                    opacity: 1;
-                    transform: none;
-                  }
-                }
-            `}
-            </style>
-            <section>
-                <Title subheading={formatLocalDate(doc.meta.publishedAt)}>
-                    {doc.meta.title}
-                </Title>
-                <article className="prose"
-                style={{
-                    animationName: "slide-up",
-                    animationDuration: "0.6s",
-                }}
-                >
-                    <Post {...doc} />l
-                </article>
-            </section>
-        </>
+        <section>
+            <Title subheading={formatLocalDate(doc.meta.publishedAt)}>
+                {doc.meta.title}
+            </Title>
+            <article
+                className="prose motion-safe:animate-slideUp"
+            >
+                <Post {...doc} />l
+            </article>
+        </section>
     );
 }
