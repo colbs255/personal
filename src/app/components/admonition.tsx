@@ -18,7 +18,7 @@ export default function Admonition(
 ) {
     return (
         <div
-            className={`border-1 ${schema.borderColor} rounded-lg overflow-hidden shadow-sm mb-2`}
+            className={`border-1 ${schema.borderColor} rounded-lg overflow-hidden mb-2`}
         >
             <div
                 className={`${schema.titleColor} text-black dark:text-white font-semibold px-4 py-2 text-sm flex items-center gap-2`}
