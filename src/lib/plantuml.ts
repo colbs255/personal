@@ -35,6 +35,9 @@ export default async function generatePlantUmlSvg(
                 inputFile,
                 "-theme",
                 theme,
+                // Themes have different values for the following so we force the same value
+                "-Sshadowing=false",
+                "-SPadding=5",
                 "-o",
                 name,
             ]);
