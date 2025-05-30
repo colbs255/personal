@@ -20,6 +20,9 @@
             pkgs.plantuml
             pkgs.biome
           ];
+          shellHook = ''
+            export NEXT_TELEMETRY_DISABLED=1
+          '';
         };
       });
     };
