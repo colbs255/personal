@@ -38,7 +38,7 @@ export default async function Page({ params }: { params: Promise<Params> }) {
                 {doc.meta.title}
             </Title>
             <article className="prose motion-safe:animate-enter">
-                <Post {...doc} />l
+                <Post {...doc} />
             </article>
         </section>
     );
