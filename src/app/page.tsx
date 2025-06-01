@@ -68,11 +68,13 @@ export default function Home() {
     return (
         <div>
             <Title>{displayedText}</Title>
-            <p className="mb-4 motion-safe:animate-enter">
-                {
-                    "Hi! This is my personal site where I host my posts and slides."
-                }
-            </p>
+            <div className="slide-enter-content">
+                <p className="mb-4">
+                    {
+                        "Hi! This is my personal site where I host my posts and slides."
+                    }
+                </p>
+            </div>
         </div>
     );
 }
