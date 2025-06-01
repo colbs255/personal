@@ -27,7 +27,7 @@ export default function Page() {
         <div>
             <Title>Slides</Title>
             <Grid
-                className="motion-safe:animate-enter"
+                className="slide-enter-content"
                 items={items}
                 openInNewTab={true}
             />
