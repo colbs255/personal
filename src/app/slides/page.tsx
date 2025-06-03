@@ -26,10 +26,7 @@ export default function Page() {
     return (
         <div>
             <Title>Slides</Title>
-            <Grid
-                items={items}
-                openInNewTab={true}
-            />
+            <Grid items={items} openInNewTab={true} />
         </div>
     );
 }

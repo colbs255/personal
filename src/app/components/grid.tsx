@@ -24,7 +24,7 @@ export default function Grid({
         <div className={className}>
             {items.map((item, index) => (
                 <Link
-                    style={{animationDelay: `${index * 90}ms`}}
+                    style={{ animationDelay: `${index * 90}ms` }}
                     key={item.name}
                     className="flex flex-col space-y-1 mb-4 motion-safe:animate-enter"
                     href={item.href}
