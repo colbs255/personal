@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-    --animate-enter: enter 0.6s;
+    --animate-enter: enter 0.6s both;
 
     @keyframes enter {
         0% {
