@@ -22,10 +22,11 @@ export default function Grid({
 }: Props) {
     return (
         <div className={className}>
-            {items.map((item) => (
+            {items.map((item, index) => (
                 <Link
+                    style={{animationDelay: `${index * 90}ms`}}
                     key={item.name}
-                    className="flex flex-col space-y-1 mb-4"
+                    className="flex flex-col space-y-1 mb-4 motion-safe:animate-enter"
                     href={item.href}
                     target={openInNewTab ? "_blank" : "_self"}
                     rel={openInNewTab ? "noopener noreferrer" : undefined}
